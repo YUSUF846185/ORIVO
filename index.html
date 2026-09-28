@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="tg">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ORIVO | Tajikistan Marketplace</title>
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="./authGuard.js"></script>
+    <script src="./orivoStore.js"></script>
+
+</head>
+
+
+<body>
+
+
+<div
+    id="orivoSplash"
+    class="orivo-splash"
+    aria-hidden="true"
+>
+    <div class="orivo-sky">
+        <div class="orivo-sky-night"></div>
+        <div class="orivo-sky-dawn"></div>
+        <div class="orivo-sky-gold"></div>
+    </div>
+
+    <div class="orivo-stars" id="orivoStars"></div>
+
+    <div class="orivo-sun-wrap">
+        <div class="orivo-sun-bloom"></div>
+        <div class="orivo-sun-corona"></div>
+        <div class="orivo-sun-core"></div>
+    </div>
+
+    <div class="orivo-clouds" aria-hidden="true">
+        <span class="orivo-cloud orivo-cloud-a"></span>
+        <span class="orivo-cloud orivo-cloud-b"></span>
+        <span class="orivo-cloud orivo-cloud-c"></span>
+    </div>
+
+    <svg
+        class="orivo-range"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="xMidYMax slice"
+        aria-hidden="true"
+    >
+        <defs>
+            <linearGradient id="orivoFarRidge" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#3d2a4a" />
+                <stop offset="55%" stop-color="#24182e" />
+                <stop offset="100%" stop-color="#140f1c" />
+            </linearGradient>
+            <linearGradient id="orivoLeftPeak" x1="0.15" y1="0" x2="0.7" y2="1">
+                <stop offset="0%" stop-color="#1c4d38" />
+                <stop offset="28%" stop-color="#123528" />
+                <stop offset="100%" stop-color="#06140e" />
+            </linearGradient>
+            <linearGradient id="orivoRightPeak" x1="0.3" y1="0" x2="0.85" y2="1">
+                <stop offset="0%" stop-color="#246348" />
+                <stop offset="36%" stop-color="#154232" />
+                <stop offset="100%" stop-color="#071810" />
+            </linearGradient>
+            <linearGradient id="orivoSnow" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fff7e8" />
+                <stop offset="70%" stop-color="#d8c4a6" />
+                <stop offset="100%" stop-color="#8a6f52" />
+            </linearGradient>
+            <linearGradient id="orivoValley" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0a1c14" />
+                <stop offset="100%" stop-color="#040a08" />
+            </linearGradient>
+        </defs>
+
+        <path
+            class="orivo-ridge-far"
+            fill="url(#orivoFarRidge)"
+            d="M0 620 C 180 540, 280 500, 420 560 C 520 610, 620 500, 720 548 C 840 610, 960 470, 1080 540 C 1200 600, 1320 520, 1440 580 L 1440 900 L 0 900 Z"
+        />
+
+        <path
+            class="orivo-mountain orivo-mountain-left"
+            fill="url(#orivoLeftPeak)"
+            d="M-40 900 L 20 680 L 140 400 L 280 150 L 322 214 L 368 118 L 470 300 L 540 240 L 620 430 L 690 500 L 720 548 L 720 900 Z"
+        />
+        <path
+            class="orivo-snow orivo-snow-left"
+            fill="url(#orivoSnow)"
+            d="M280 150 L 322 214 L 300 220 L 284 190 L 266 214 L 248 196 Z"
+        />
+        <path
+            class="orivo-snow orivo-snow-left-b"
+            fill="url(#orivoSnow)"
+            opacity="0.85"
+            d="M368 118 L 400 186 L 368 172 L 344 188 Z"
+        />
+
+        <path
+            class="orivo-mountain orivo-mountain-right"
+            fill="url(#orivoRightPeak)"
+            d="M720 900 L 720 548 L 750 500 L 820 360 L 900 190 L 958 108 L 996 168 L 1048 92 L 1160 270 L 1260 176 L 1380 360 L 1500 640 L 1500 900 Z"
+        />
+        <path
+            class="orivo-snow orivo-snow-right"
+            fill="url(#orivoSnow)"
+            d="M958 108 L 996 168 L 974 176 L 958 148 L 940 170 L 918 152 Z"
+        />
+        <path
+            class="orivo-snow orivo-snow-right-b"
+            fill="url(#orivoSnow)"
+            opacity="0.8"
+            d="M1048 92 L 1084 168 L 1048 154 L 1024 172 Z"
+        />
+
+        <path
+            class="orivo-valley"
+            fill="url(#orivoValley)"
+            d="M0 820 C 220 770, 480 800, 720 760 C 980 720, 1220 780, 1440 740 L 1440 900 L 0 900 Z"
+        />
+    </svg>
+
+    <div class="orivo-mist"></div>
+    <div class="orivo-haze"></div>
+
+    <div class="orivo-birds" aria-hidden="true">
+        <svg class="orivo-bird orivo-bird-a" viewBox="0 0 36 16">
+            <path class="wing-l" d="M18 9 C 12 2, 5 1, 1 8" />
+            <path class="wing-r" d="M18 9 C 24 2, 31 1, 35 8" />
+        </svg>
+        <svg class="orivo-bird orivo-bird-b" viewBox="0 0 36 16">
+            <path class="wing-l" d="M18 9 C 12 2, 5 1, 1 8" />
+            <path class="wing-r" d="M18 9 C 24 2, 31 1, 35 8" />
+        </svg>
+        <svg class="orivo-bird orivo-bird-c" viewBox="0 0 36 16">
+            <path class="wing-l" d="M18 9 C 12 2, 5 1, 1 8" />
+            <path class="wing-r" d="M18 9 C 24 2, 31 1, 35 8" />
+        </svg>
+        <svg class="orivo-bird orivo-bird-d" viewBox="0 0 36 16">
+            <path class="wing-l" d="M18 9 C 12 2, 5 1, 1 8" />
+            <path class="wing-r" d="M18 9 C 24 2, 31 1, 35 8" />
+        </svg>
+        <svg class="orivo-bird orivo-bird-e" viewBox="0 0 36 16">
+            <path class="wing-l" d="M18 9 C 12 2, 5 1, 1 8" />
+            <path class="wing-r" d="M18 9 C 24 2, 31 1, 35 8" />
+        </svg>
+        <svg class="orivo-bird orivo-bird-f" viewBox="0 0 36 16">
+            <path class="wing-l" d="M18 9 C 12 2, 5 1, 1 8" />
+            <path class="wing-r" d="M18 9 C 24 2, 31 1, 35 8" />
+        </svg>
+    </div>
+
+    <div class="orivo-splash-inner">
+        <div class="orivo-splash-name">
+            OR<span>I</span>VO
+        </div>
+        <div class="orivo-splash-line"></div>
+        <div class="orivo-splash-tag">
+            ВСЁ ЛУЧШЕЕ — ДЛЯ ВАС
+        </div>
+        <div class="orivo-splash-text">
+            TAJIKISTAN MARKETPLACE
+        </div>
+        <div class="orivo-splash-skip">
+            Нажмите, чтобы продолжить
+        </div>
+    </div>
+</div>
+
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<header>
+
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Меню">☰</button>
+
+
+    <!-- ORIVO LOGO -->
+
+    <a href="index.html" class="brand">
+
+        <img
+            src="images/orivo-logo.png"
+            alt="ORIVO Logo"
+            class="brand-logo"
+        >
+
+        <div class="brand-info">
+
+            <div class="brand-name">
+                ORIVO
+            </div>
+
+            <div class="brand-subtitle">
+                TAJIKISTAN MARKETPLACE
+            </div>
+
+        </div>
+
+    </a>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="Ҷустуҷӯи маҳсулот..."
+            autocomplete="off"
+        >
+        <button class="search-submit" type="button">Ҷустуҷӯ</button>
+
+    </div>
+
+    <a class="header-cats" href="#categories">Категорияҳо</a>
+
+
+    <!-- MENU -->
+
+    <div class="menu" id="siteMenu">
+
+
+        <!-- WISHLIST -->
+
+        <a
+            href="wishlist.html"
+            class="header-link"
+            title="Wishlist"
+        >
+
+            ❤️
+
+            <span id="wishlistCount">
+                0
+            </span>
+
+        </a>
+
+
+        <!-- CART -->
+
+        <a
+            href="#cart"
+            class="header-link"
+            title="Сабад"
+        >
+
+            🛒
+
+            <span id="cartCount">
+                0
+            </span>
+
+        </a>
+
+
+        <!-- USER -->
+
+        <span id="userArea">
+
+            <a
+                href="login.html"
+                class="header-link"
+            >
+
+                👤 Login
+
+            </a>
+
+        </span>
+
+
+        <!-- DARK MODE -->
+
+        <button
+            id="themeButton"
+            class="theme-button"
+            type="button"
+            title="Тағйири режим"
+        >
+
+            🌙
+
+        </button>
+
+
+    </div>
+
+
+</header>
+
+
+
+<!-- ==================================================
+     HERO
+================================================== -->
+
+<section class="welcome">
+
+    <div class="welcome-content">
+
+
+        <div class="welcome-badge">
+
+            🇹🇯 Тоҷикистон
+
+        </div>
+
+
+        <h1>
+
+            Хуш омадед ба
+
+            <span>
+                ORIVO
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            Беҳтарин маҳсулотро
+            осон, зуд ва бехатар харед.
+
+        </p>
+
+
+        <p class="welcome-small">
+
+            Tajikistan Marketplace
+
+        </p>
+
+
+        <button
+            id="startShoppingButton"
+            class="start-button"
+            type="button"
+        >
+
+            Харидро оғоз кунед
+
+        </button>
+
+
+    </div>
+
+    <div class="hero-visual">
+        <button
+            class="hero-shot"
+            type="button"
+            data-name="iPhone 15 Pro"
+            data-price="12000"
+            data-image="phone.png"
+            data-category="phone"
+        >
+            <img src="images/phone.png" alt="iPhone 15 Pro">
+        </button>
+        <button
+            class="hero-shot"
+            type="button"
+            data-name="MacBook Pro"
+            data-price="22000"
+            data-image="laptop.png"
+            data-category="laptop"
+        >
+            <img src="images/laptop.png" alt="MacBook Pro">
+        </button>
+        <button
+            class="hero-shot"
+            type="button"
+            data-name="AirPods Pro"
+            data-price="3200"
+            data-image="headphones.png"
+            data-category="headphones"
+        >
+            <img src="images/headphones.png" alt="AirPods Pro">
+        </button>
+    </div>
+
+    <div class="hero-stats">
+        <div><strong>2 400+</strong><span>Маҳсулот</span></div>
+        <div><strong>98%</strong><span>Харидорони қаноатманд</span></div>
+        <div><strong>24/7</strong><span>Дастгирӣ</span></div>
+    </div>
+
+
+    <section class="services">
+
+
+    <div class="service-card">
+
+        <div class="service-icon">
+            🚚
+        </div>
+
+        <div>
+
+            <h3>
+                Расонидани зуд
+            </h3>
+
+            <p>
+                Маҳсулотро зуд қабул кунед
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="service-card">
+
+        <div class="service-icon">
+            🔒
+        </div>
+
+        <div>
+
+            <h3>
+                Пардохти бехатар
+            </h3>
+
+            <p>
+                Хариди боэътимод ва бехатар
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="service-card">
+
+        <div class="service-icon">
+            ↩️
+        </div>
+
+        <div>
+
+            <h3>
+                Бозгардонидани осон
+            </h3>
+
+            <p>
+                Хизматрасонии қулай
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="service-card">
+
+        <div class="service-icon">
+            🇹🇯
+        </div>
+
+        <div>
+
+            <h3>
+                ORIVO Тоҷикистон
+            </h3>
+
+            <p>
+                Marketplace барои Тоҷикистон
+            </p>
+
+        </div>
+
+    </div>
+
+
+    </section>
+
+
+</section>
+
+
+
+<section class="how-section" id="recentSection" hidden>
+    <div class="section-title">
+        <h2>Ба наздикӣ дидаед</h2>
+        <p>Маҳсулотҳое, ки шумо кушода будед</p>
+    </div>
+    <div class="related-grid" id="recentGrid"></div>
+</section>
+
+
+
+<section class="how-section">
+    <div class="section-title">
+        <h2>Чӣ тавр харидан</h2>
+        <p>Чор қадам — то маҳсулот дар дари шумо</p>
+    </div>
+    <div class="how-grid">
+        <article>
+            <span>1</span>
+            <h3>Ҷустуҷӯ кунед</h3>
+            <p>Номи маҳсулот ё категорияро нависед.</p>
+        </article>
+        <article>
+            <span>2</span>
+            <h3>Муқоиса кунед</h3>
+            <p>Нарх, рейтинг ва тавсифро бинед.</p>
+        </article>
+        <article>
+            <span>3</span>
+            <h3>Ба сабад</h3>
+            <p>Миқдорро интихоб кунед ва захира кунед.</p>
+        </article>
+        <article>
+            <span>4</span>
+            <h3>Фармоиш диҳед</h3>
+            <p>Суроғаро нависед — мо мерасонем.</p>
+        </article>
+    </div>
+</section>
+
+
+
+<!-- ==================================================
+     CATEGORIES
+================================================== -->
+
+<section class="categories" id="categories">
+
+
+    <h2>
+
+        Категорияҳои машҳур
+
+    </h2>
+
+
+    <p class="section-description">
+
+        Категорияи маҳсулоти лозимаро интихоб кунед
+
+    </p>
+
+
+    <div class="category-buttons">
+
+
+        <button
+            type="button"
+            class="category active"
+            data-category="all"
+        >
+
+            🛍 Ҳама
+
+        </button>
+
+
+        <button
+            type="button"
+            class="category"
+            data-category="phone"
+        >
+
+            📱 Телефон
+
+        </button>
+
+
+        <button
+            type="button"
+            class="category"
+            data-category="laptop"
+        >
+
+            💻 Ноутбук
+
+        </button>
+
+
+        <button
+            type="button"
+            class="category"
+            data-category="headphones"
+        >
+
+            🎧 Гӯшмонак
+
+        </button>
+
+
+        <button
+            type="button"
+            class="category"
+            data-category="watch"
+        >
+
+            ⌚ Соат
+
+        </button>
+
+
+        <button
+            type="button"
+            class="category"
+            data-category="tv"
+        >
+
+            📺 Телевизор
+
+        </button>
+
+
+        <button
+            type="button"
+            class="category"
+            data-category="home"
+        >
+
+            🏠 Хона
+
+        </button>
+
+
+        <button
+            type="button"
+            class="category"
+            data-category="clothes"
+        >
+
+            👕 Либос
+
+        </button>
+
+
+        <button
+            type="button"
+            class="category"
+            data-category="sport"
+        >
+
+            ⚽ Варзиш
+
+        </button>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     PRODUCTS
+================================================== -->
+
+<section
+    id="productsSection"
+    class="products-section"
+>
+
+
+    <div class="section-title">
+
+
+        <h2>
+
+            Маҳсулотҳои пешниҳодшуда
+
+        </h2>
+
+
+        <p>
+
+            Маҳсулоти беҳтарини ORIVO
+
+        </p>
+
+
+    </div>
+
+
+
+    <div class="listing-toolbar">
+        <button class="filter-toggle" id="filterToggle" type="button">Филтрҳо</button>
+        <select id="sortSelect" aria-label="Мураттабсозӣ">
+            <option value="featured">Пешниҳодшуда</option>
+            <option value="price-asc">Нарх: арзон → қимат</option>
+            <option value="price-desc">Нарх: қимат → арзон</option>
+            <option value="name">Ном</option>
+        </select>
+    </div>
+
+    <div class="filter-backdrop" id="filterBackdrop"></div>
+
+    <div class="shop-layout">
+
+    <aside class="filters" id="filtersPanel">
+        <h3>Филтрҳо</h3>
+        <div class="filter-group">
+            <p>Нарх</p>
+            <input type="number" id="minPrice" placeholder="Аз" min="0">
+            <input type="number" id="maxPrice" placeholder="То" min="0" style="margin-top:8px;">
+        </div>
+        <div class="filter-group">
+            <p>Рейтинг</p>
+            <select id="ratingFilter">
+                <option value="0">Ҳама</option>
+                <option value="4">4+ ситора</option>
+                <option value="5">5 ситора</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <p>Дастрасӣ</p>
+            <label><input type="checkbox" id="onlyAvailable" checked> Дар анбор</label>
+        </div>
+        <div class="filter-group">
+            <p>Тахфиф</p>
+            <label><input type="checkbox" id="onlyDiscount"> Танҳо тахфиф</label>
+        </div>
+    </aside>
+
+    <div>
+
+    <!-- PRODUCTS GRID -->
+
+    <div
+        id="products"
+        class="products"
+    >
+
+
+
+        <!-- ==================================================
+             IPHONE 15 PRO
+        ================================================== -->
+
+        <div
+            class="card product-card"
+            data-category="phone"
+            data-name="iPhone 15 Pro"
+        >
+
+
+            <div class="product-image">
+
+
+                <div class="product-label">
+
+                    🆕 Нав
+
+                </div>
+
+
+                <img
+                    src="images/phone.png"
+                    alt="iPhone 15 Pro"
+                >
+
+
+            </div>
+
+
+            <div class="product-content">
+
+
+                <div class="product-top">
+
+                    <span class="product-category">
+
+                        📱 Телефон
+
+                    </span>
+
+                </div>
+
+
+                <h2>
+
+                    iPhone 15 Pro
+
+                </h2>
+
+
+                <div class="rating">
+
+                    ⭐⭐⭐⭐⭐
+
+                    <span>
+                        5.0
+                    </span>
+
+                </div>
+
+
+                <p class="price">
+
+                    12 000 сомонӣ
+
+                </p>
+
+
+                <div class="product-buttons">
+
+
+                    <button
+                        type="button"
+                        class="add-cart-button"
+                        data-name="iPhone 15 Pro"
+                        data-price="12000"
+                        data-image="phone.png"
+                        data-category="phone"
+                    >
+
+                        🛒 Ба сабад
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="wishlist-button"
+                        data-name="iPhone 15 Pro"
+                        data-price="12000"
+                        data-image="phone.png"
+                        data-category="phone"
+                        title="Ба дӯстдоштаҳо"
+                    >
+
+                        ❤️
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ==================================================
+             MACBOOK PRO
+        ================================================== -->
+
+        <div
+            class="card product-card"
+            data-category="laptop"
+            data-name="MacBook Pro"
+        >
+
+
+            <div class="product-image">
+
+
+                <div class="product-label">
+
+                    ⭐ Top
+
+                </div>
+
+
+                <img
+                    src="images/laptop.png"
+                    alt="MacBook Pro"
+                >
+
+
+            </div>
+
+
+            <div class="product-content">
+
+
+                <div class="product-top">
+
+                    <span class="product-category">
+
+                        💻 Ноутбук
+
+                    </span>
+
+                </div>
+
+
+                <h2>
+
+                    MacBook Pro
+
+                </h2>
+
+
+                <div class="rating">
+
+                    ⭐⭐⭐⭐⭐
+
+                    <span>
+                        4.9
+                    </span>
+
+                </div>
+
+
+                <p class="price">
+
+                    22 000 сомонӣ
+
+                </p>
+
+
+                <div class="product-buttons">
+
+
+                    <button
+                        type="button"
+                        class="add-cart-button"
+                        data-name="MacBook Pro"
+                        data-price="22000"
+                        data-image="laptop.png"
+                        data-category="laptop"
+                    >
+
+                        🛒 Ба сабад
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="wishlist-button"
+                        data-name="MacBook Pro"
+                        data-price="22000"
+                        data-image="laptop.png"
+                        data-category="laptop"
+                    >
+
+                        ❤️
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ==================================================
+             AIRPODS PRO
+        ================================================== -->
+
+        <div
+            class="card product-card"
+            data-category="headphones"
+            data-name="AirPods Pro"
+        >
+
+
+            <div class="product-image">
+
+
+                <div class="product-label">
+
+                    🆕 Нав
+
+                </div>
+
+
+                <img
+                    src="images/headphones.png"
+                    alt="AirPods Pro"
+                >
+
+
+            </div>
+
+
+            <div class="product-content">
+
+
+                <div class="product-top">
+
+                    <span class="product-category">
+
+                        🎧 Гӯшмонак
+
+                    </span>
+
+                </div>
+
+
+                <h2>
+
+                    AirPods Pro
+
+                </h2>
+
+
+                <div class="rating">
+
+                    ⭐⭐⭐⭐⭐
+
+                    <span>
+                        4.8
+                    </span>
+
+                </div>
+
+
+                <p class="price">
+
+                    3 200 сомонӣ
+
+                </p>
+
+
+                <div class="product-buttons">
+
+
+                    <button
+                        type="button"
+                        class="add-cart-button"
+                        data-name="AirPods Pro"
+                        data-price="3200"
+                        data-image="headphones.png"
+                        data-category="headphones"
+                    >
+
+                        🛒 Ба сабад
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="wishlist-button"
+                        data-name="AirPods Pro"
+                        data-price="3200"
+                        data-image="headphones.png"
+                        data-category="headphones"
+                    >
+
+                        ❤️
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ==================================================
+             APPLE WATCH
+        ================================================== -->
+
+        <div
+            class="card product-card"
+            data-category="watch"
+            data-name="Apple Watch"
+        >
+
+
+            <div class="product-image">
+
+
+                <div class="product-label">
+
+                    🔥 Popular
+
+                </div>
+
+
+                <img
+                    src="images/watch.png"
+                    alt="Apple Watch"
+                >
+
+
+            </div>
+
+
+            <div class="product-content">
+
+
+                <div class="product-top">
+
+                    <span class="product-category">
+
+                        ⌚ Соат
+
+                    </span>
+
+                </div>
+
+
+                <h2>
+
+                    Apple Watch
+
+                </h2>
+
+
+                <div class="rating">
+
+                    ⭐⭐⭐⭐⭐
+
+                    <span>
+                        4.9
+                    </span>
+
+                </div>
+
+
+                <p class="price">
+
+                    4 500 сомонӣ
+
+                </p>
+
+
+                <div class="product-buttons">
+
+
+                    <button
+                        type="button"
+                        class="add-cart-button"
+                        data-name="Apple Watch"
+                        data-price="4500"
+                        data-image="watch.png"
+                        data-category="watch"
+                    >
+
+                        🛒 Ба сабад
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="wishlist-button"
+                        data-name="Apple Watch"
+                        data-price="4500"
+                        data-image="watch.png"
+                        data-category="watch"
+                    >
+
+                        ❤️
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ==================================================
+             SMART TV
+        ================================================== -->
+
+        <div
+            class="card product-card"
+            data-category="tv"
+            data-name="Smart TV"
+        >
+
+
+            <div class="product-image">
+
+
+                <div class="product-label">
+
+                    💎 Best
+
+                </div>
+
+
+                <img
+                    src="images/tv.png"
+                    alt="Smart TV"
+                >
+
+
+            </div>
+
+
+            <div class="product-content">
+
+
+                <div class="product-top">
+
+                    <span class="product-category">
+
+                        📺 Телевизор
+
+                    </span>
+
+                </div>
+
+
+                <h2>
+
+                    Smart TV
+
+                </h2>
+
+
+                <div class="rating">
+
+                    ⭐⭐⭐⭐⭐
+
+                    <span>
+                        4.7
+                    </span>
+
+                </div>
+
+
+                <p class="price">
+
+                    7 500 сомонӣ
+
+                </p>
+
+
+                <div class="product-buttons">
+
+
+                    <button
+                        type="button"
+                        class="add-cart-button"
+                        data-name="Smart TV"
+                        data-price="7500"
+                        data-image="tv.png"
+                        data-category="tv"
+                    >
+
+                        🛒 Ба сабад
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="wishlist-button"
+                        data-name="Smart TV"
+                        data-price="7500"
+                        data-image="tv.png"
+                        data-category="tv"
+                    >
+
+                        ❤️
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="card product-card" data-category="phone" data-name="Samsung Galaxy S24">
+            <div class="product-image">
+                <div class="product-label">🔥 Popular</div>
+                <img src="images/samsung-s24.png" alt="Samsung Galaxy S24">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">📱 Телефон</span>
+                </div>
+                <h2>Samsung Galaxy S24</h2>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>4.8</span></div>
+                <p class="price">9 800 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="Samsung Galaxy S24" data-price="9800" data-image="samsung-s24.png" data-category="phone">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="Samsung Galaxy S24" data-price="9800" data-image="samsung-s24.png" data-category="phone" title="Ба дӯстдоштаҳо">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="phone" data-name="Xiaomi 14">
+            <div class="product-image">
+                <div class="product-label sale">Sale</div>
+                <img src="images/xiaomi-14.png" alt="Xiaomi 14">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">📱 Телефон</span>
+                </div>
+                <h2>Xiaomi 14</h2>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>4.7</span></div>
+                <p class="price">6 500 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="Xiaomi 14" data-price="6500" data-image="xiaomi-14.png" data-category="phone">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="Xiaomi 14" data-price="6500" data-image="xiaomi-14.png" data-category="phone">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="laptop" data-name="HP Pavilion">
+            <div class="product-image">
+                <div class="product-label">🆕 Нав</div>
+                <img src="images/hp-pavilion.png" alt="HP Pavilion">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">💻 Ноутбук</span>
+                </div>
+                <h2>HP Pavilion</h2>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>4.6</span></div>
+                <p class="price">14 500 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="HP Pavilion" data-price="14500" data-image="hp-pavilion.png" data-category="laptop">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="HP Pavilion" data-price="14500" data-image="hp-pavilion.png" data-category="laptop">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="laptop" data-name="ASUS VivoBook">
+            <div class="product-image">
+                <div class="product-label">⭐ Top</div>
+                <img src="images/asus-vivobook.png" alt="ASUS VivoBook">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">💻 Ноутбук</span>
+                </div>
+                <h2>ASUS VivoBook</h2>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>4.5</span></div>
+                <p class="price">11 800 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="ASUS VivoBook" data-price="11800" data-image="asus-vivobook.png" data-category="laptop">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="ASUS VivoBook" data-price="11800" data-image="asus-vivobook.png" data-category="laptop">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="headphones" data-name="Sony WH-1000XM5">
+            <div class="product-image">
+                <div class="product-label">💎 Best</div>
+                <img src="images/sony-xm5.png" alt="Sony WH-1000XM5">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">🎧 Гӯшмонак</span>
+                </div>
+                <h2>Sony WH-1000XM5</h2>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>4.9</span></div>
+                <p class="price">4 200 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="Sony WH-1000XM5" data-price="4200" data-image="sony-xm5.png" data-category="headphones">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="Sony WH-1000XM5" data-price="4200" data-image="sony-xm5.png" data-category="headphones">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="headphones" data-name="JBL Tune 760">
+            <div class="product-image">
+                <div class="product-label sale">Sale</div>
+                <img src="images/jbl-tune.png" alt="JBL Tune 760">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">🎧 Гӯшмонак</span>
+                </div>
+                <h2>JBL Tune 760</h2>
+                <div class="rating">⭐⭐⭐⭐ <span>4.4</span></div>
+                <p class="price">890 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="JBL Tune 760" data-price="890" data-image="jbl-tune.png" data-category="headphones">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="JBL Tune 760" data-price="890" data-image="jbl-tune.png" data-category="headphones">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="watch" data-name="Samsung Watch 6">
+            <div class="product-image">
+                <div class="product-label">🆕 Нав</div>
+                <img src="images/samsung-watch6.png" alt="Samsung Watch 6">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">⌚ Соат</span>
+                </div>
+                <h2>Samsung Watch 6</h2>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>4.6</span></div>
+                <p class="price">3 100 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="Samsung Watch 6" data-price="3100" data-image="samsung-watch6.png" data-category="watch">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="Samsung Watch 6" data-price="3100" data-image="samsung-watch6.png" data-category="watch">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="tv" data-name="Samsung 55 QLED">
+            <div class="product-image">
+                <div class="product-label">🔥 Popular</div>
+                <img src="images/samsung-qled.png" alt="Samsung 55 QLED">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">📺 Телевизор</span>
+                </div>
+                <h2>Samsung 55 QLED</h2>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>4.7</span></div>
+                <p class="price">9 800 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="Samsung 55 QLED" data-price="9800" data-image="samsung-qled.png" data-category="tv">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="Samsung 55 QLED" data-price="9800" data-image="samsung-qled.png" data-category="tv">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="home" data-name="Dyson V15">
+            <div class="product-image">
+                <div class="product-label">💎 Best</div>
+                <img src="images/dyson-v15.png" alt="Dyson V15">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">🏠 Хона</span>
+                </div>
+                <h2>Dyson V15</h2>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>4.8</span></div>
+                <p class="price">4 500 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="Dyson V15" data-price="4500" data-image="dyson-v15.png" data-category="home">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="Dyson V15" data-price="4500" data-image="dyson-v15.png" data-category="home">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="home" data-name="Яхдон Haier">
+            <div class="product-image">
+                <div class="product-label">⭐ Top</div>
+                <img src="images/haier-fridge.png" alt="Яхдон Haier">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">🏠 Хона</span>
+                </div>
+                <h2>Яхдон Haier</h2>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>4.6</span></div>
+                <p class="price">7 200 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="Яхдон Haier" data-price="7200" data-image="haier-fridge.png" data-category="home">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="Яхдон Haier" data-price="7200" data-image="haier-fridge.png" data-category="home">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="home" data-name="Мошини ҷомашӯӣ Bosch">
+            <div class="product-image">
+                <div class="product-label">🆕 Нав</div>
+                <img src="images/bosch-washer.png" alt="Мошини ҷомашӯӣ Bosch">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">🏠 Хона</span>
+                </div>
+                <h2>Мошини ҷомашӯӣ Bosch</h2>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>4.7</span></div>
+                <p class="price">8 900 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="Мошини ҷомашӯӣ Bosch" data-price="8900" data-image="bosch-washer.png" data-category="home">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="Мошини ҷомашӯӣ Bosch" data-price="8900" data-image="bosch-washer.png" data-category="home">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="home" data-name="Блендер Philips">
+            <div class="product-image">
+                <div class="product-label sale">Sale</div>
+                <img src="images/philips-blender.png" alt="Блендер Philips">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">🏠 Хона</span>
+                </div>
+                <h2>Блендер Philips</h2>
+                <div class="rating">⭐⭐⭐⭐ <span>4.4</span></div>
+                <p class="price">420 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="Блендер Philips" data-price="420" data-image="philips-blender.png" data-category="home">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="Блендер Philips" data-price="420" data-image="philips-blender.png" data-category="home">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="clothes" data-name="Nike Air Force 1">
+            <div class="product-image">
+                <div class="product-label">🔥 Popular</div>
+                <img src="images/nike-af1.png" alt="Nike Air Force 1">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">👕 Либос</span>
+                </div>
+                <h2>Nike Air Force 1</h2>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>4.8</span></div>
+                <p class="price">1 450 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="Nike Air Force 1" data-price="1450" data-image="nike-af1.png" data-category="clothes">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="Nike Air Force 1" data-price="1450" data-image="nike-af1.png" data-category="clothes">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="clothes" data-name="Adidas Hoodie">
+            <div class="product-image">
+                <div class="product-label">🆕 Нав</div>
+                <img src="images/adidas-hoodie.png" alt="Adidas Hoodie">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">👕 Либос</span>
+                </div>
+                <h2>Adidas Hoodie</h2>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>4.6</span></div>
+                <p class="price">380 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="Adidas Hoodie" data-price="380" data-image="adidas-hoodie.png" data-category="clothes">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="Adidas Hoodie" data-price="380" data-image="adidas-hoodie.png" data-category="clothes">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="clothes" data-name="Ҷинс Levi's">
+            <div class="product-image">
+                <div class="product-label">⭐ Top</div>
+                <img src="images/levis-jeans.png" alt="Ҷинс Levi's">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">👕 Либос</span>
+                </div>
+                <h2>Ҷинс Levi's</h2>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>4.5</span></div>
+                <p class="price">520 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="Ҷинс Levi's" data-price="520" data-image="levis-jeans.png" data-category="clothes">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="Ҷинс Levi's" data-price="520" data-image="levis-jeans.png" data-category="clothes">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="sport" data-name="Тӯби футбол">
+            <div class="product-image">
+                <div class="product-label">🔥 Popular</div>
+                <img src="images/football.png" alt="Тӯби футбол">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">⚽ Варзиш</span>
+                </div>
+                <h2>Тӯби футбол</h2>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>4.7</span></div>
+                <p class="price">180 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="Тӯби футбол" data-price="180" data-image="football.png" data-category="sport">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="Тӯби футбол" data-price="180" data-image="football.png" data-category="sport">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="sport" data-name="Гилемчаи йога">
+            <div class="product-image">
+                <div class="product-label sale">Sale</div>
+                <img src="images/yoga-mat.png" alt="Гилемчаи йога">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">⚽ Варзиш</span>
+                </div>
+                <h2>Гилемчаи йога</h2>
+                <div class="rating">⭐⭐⭐⭐ <span>4.4</span></div>
+                <p class="price">95 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="Гилемчаи йога" data-price="95" data-image="yoga-mat.png" data-category="sport">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="Гилемчаи йога" data-price="95" data-image="yoga-mat.png" data-category="sport">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card product-card" data-category="sport" data-name="Гантеля 10 кг">
+            <div class="product-image">
+                <div class="product-label">🆕 Нав</div>
+                <img src="images/dumbbells.png" alt="Гантеля 10 кг">
+            </div>
+            <div class="product-content">
+                <div class="product-top">
+                    <span class="product-category">⚽ Варзиш</span>
+                </div>
+                <h2>Гантеля 10 кг</h2>
+                <div class="rating">⭐⭐⭐⭐⭐ <span>4.6</span></div>
+                <p class="price">240 сомонӣ</p>
+                <div class="product-buttons">
+                    <button type="button" class="add-cart-button" data-name="Гантеля 10 кг" data-price="240" data-image="dumbbells.png" data-category="sport">🛒 Ба сабад</button>
+                    <button type="button" class="wishlist-button" data-name="Гантеля 10 кг" data-price="240" data-image="dumbbells.png" data-category="sport">❤️</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ==================================================
+         ADMIN PRODUCTS
+    ================================================== -->
+
+    <div
+        id="newProducts"
+        class="products"
+    >
+
+    </div>
+
+    </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     CART
+================================================== -->
+
+<section
+    id="cart"
+    class="cart-section"
+>
+
+
+    <div class="cart-header">
+
+
+        <h2>
+
+            🛒 Сабади харид
+
+        </h2>
+
+
+        <p>
+
+            Маҳсулотҳои интихобкардаи шумо
+
+        </p>
+
+
+    </div>
+
+
+
+    <div id="cartItems">
+
+
+        <div class="empty-cart">
+
+
+            🛒
+
+
+            <h3>
+
+                Сабад холӣ аст
+
+            </h3>
+
+
+            <p>
+
+                Маҳсулотро ба сабад илова кунед.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <hr>
+
+
+
+    <div class="cart-total">
+
+
+        <h3>
+
+            💰 Ҳамагӣ:
+
+        </h3>
+
+
+        <strong>
+
+
+            <span id="totalPrice">
+
+                0
+
+            </span>
+
+
+            сомонӣ
+
+
+        </strong>
+
+
+    </div>
+
+
+
+    <button
+        id="checkoutButton"
+        class="checkout-button"
+        type="button"
+    >
+
+        ✅ Ба фармоиш
+
+    </button>
+
+
+</section>
+
+
+
+<section class="faq-section">
+    <div class="section-title">
+        <h2>Саволҳои зиёд</h2>
+        <p>Агар ҷавоб наёфтед, одамчаи гӯшмонакдорро пахш кунед</p>
+    </div>
+    <div class="faq-grid">
+        <article>
+            <h3>Чӣ тавр фармоиш диҳам?</h3>
+            <p>Маҳсулотро ба сабад гузоред, «Ба фармоиш»-ро пахш кунед ва суроғаву телефонро нависед.</p>
+        </article>
+        <article>
+            <h3>Пардохт чӣ хел аст?</h3>
+            <p>Пардохт ҳангоми гирифтани мол, корти бонкӣ ё онлайн имконпазир аст.</p>
+        </article>
+        <article>
+            <h3>Расонидан чанд рӯз?</h3>
+            <p>Дар Душанбе одатан 1–2 рӯз, дар дигар шаҳрҳо 2–5 рӯз.</p>
+        </article>
+        <article>
+            <h3>Агар барномаро нафаҳмам?</h3>
+            <p>Одамчаи гӯшмонакдорро дар кунҷи поён пахш кунед ва ба мо нависед.</p>
+        </article>
+    </div>
+</section>
+
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer>
+    <div class="footer-grid">
+
+    <div class="footer-brand">
+
+
+        <img
+            src="images/orivo-logo.png"
+            alt="ORIVO"
+        >
+
+
+        <div>
+
+            <h3>
+                ORIVO
+            </h3>
+
+
+            <p>
+                Хариди осон ва боэътимод дар Тоҷикистон
+            </p>
+
+        </div>
+
+
+    </div>
+
+    <div>
+        <h4>Мағоза</h4>
+        <a href="#categories">Категорияҳо</a>
+        <a href="#productsSection">Маҳсулот</a>
+        <a href="#cart">Сабад</a>
+    </div>
+
+    <div>
+        <h4>Ёрӣ</h4>
+        <a href="login.html">Ҳисоб</a>
+        <a href="wishlist.html">Дӯстдоштаҳо</a>
+        <a href="settings.html">Танзимот</a>
+    </div>
+
+    </div>
+
+
+    <p>
+
+        © 2026 ORIVO Marketplace
+
+    </p>
+
+
+</footer>
+
+<nav class="bottom-nav" aria-label="Навигация">
+    <a class="active" href="index.html">Хона</a>
+    <a href="index.html#categories">Категория</a>
+    <a href="index.html#cart">Сабад</a>
+    <a href="login.html">Ҳисоб</a>
+</nav>
+
+
+
+<!-- ==================================================
+     JAVASCRIPT
+================================================== -->
+
+<script src="./splash.js"></script>
+<script src="./i18n.js"></script>
+<script src="./script.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="tg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сабти ном | ORIVO</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="authGuard.js"></script>
+</head>
+
+<body class="auth-page">
+
+<header>
+
+    <a href="register.html" class="brand">
+        <img src="images/orivo-logo.png" alt="ORIVO Logo" class="brand-logo">
+        <div class="brand-info">
+            <div class="brand-name">ORIVO</div>
+            <div class="brand-subtitle">TAJIKISTAN MARKETPLACE</div>
+        </div>
+    </a>
+
+    <div class="menu">
+        <a href="login.html" class="header-link">← Воридшавӣ</a>
+        <button id="themeButton" class="theme-button" type="button" title="Тағйири режим">🌙</button>
+    </div>
+
+</header>
+
+<main class="auth-stage">
+
+    <div class="auth-backdrop" aria-hidden="true">
+        <div class="welcome-sky">
+            <div class="welcome-sun"></div>
+            <svg class="welcome-peaks" viewBox="0 0 800 220" preserveAspectRatio="none">
+                <path class="welcome-peak-back" d="M0 220 L210 118 L390 220 Z"></path>
+                <path class="welcome-peak-front" d="M280 220 L455 102 L680 220 Z"></path>
+                <path class="welcome-peak-far" d="M560 220 L720 130 L800 175 L800 220 Z"></path>
+            </svg>
+        </div>
+    </div>
+
+    <section class="auth-card">
+        <p class="auth-kicker">Ҳисоби нав</p>
+        <h1>Сабти ном</h1>
+        <p class="auth-lead">Аккаунти нави худро созед.</p>
+
+        <form id="registerForm" class="auth-form" novalidate>
+            <label class="auth-field">
+                <span>Номи шумо</span>
+                <input
+                    id="registerName"
+                    type="text"
+                    name="name"
+                    placeholder="Номи пурра"
+                    autocomplete="name"
+                    required
+                >
+            </label>
+
+            <label class="auth-field">
+                <span>Email</span>
+                <input
+                    id="registerEmail"
+                    type="email"
+                    name="email"
+                    placeholder="name@email.com"
+                    autocomplete="email"
+                    required
+                >
+            </label>
+
+            <label class="auth-field">
+                <span>Парол</span>
+                <input
+                    id="registerPassword"
+                    type="password"
+                    name="password"
+                    placeholder="Камаш 6 аломат"
+                    autocomplete="new-password"
+                    required
+                >
+            </label>
+
+            <label class="auth-field">
+                <span>Такрори парол</span>
+                <input
+                    id="registerConfirmPassword"
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Паролро такрор кунед"
+                    autocomplete="new-password"
+                    required
+                >
+            </label>
+
+            <button id="registerButton" class="auth-submit" type="submit">
+                Сабти ном
+            </button>
+        </form>
+
+        <p class="auth-switch">
+            Аллакай аккаунт доред?
+            <a href="login.html">Ворид шудан</a>
+        </p>
+    </section>
+
+</main>
+
+<script src="i18n.js"></script>
+<script src="register.js"></script>
+
+<nav class="bottom-nav" aria-label="Навигация">
+    <a href="login.html">Воридшавӣ</a>
+    <a class="active" href="register.html">Сабти ном</a>
+</nav>
+
+</body>
+
+</html>

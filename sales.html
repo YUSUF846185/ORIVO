@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="tg">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Фурӯш</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+    <script src="authGuard.js"></script>
+    <script src="orivoStore.js"></script>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        📈 Sales Dashboard
+    </div>
+
+</header>
+
+
+<nav
+    style="
+    padding:20px;
+    text-align:center;
+    background:#222;
+    "
+>
+
+    <a
+        href="dashboard.html"
+        style="color:white; margin:10px;"
+    >
+        📊 Dashboard
+    </a>
+
+
+    <a
+        href="admin.html"
+        style="color:white; margin:10px;"
+    >
+        📦 Маҳсулот
+    </a>
+
+
+    <a
+        href="orders.html"
+        style="color:white; margin:10px;"
+    >
+        🧾 Фармоишҳо
+    </a>
+
+
+    <a
+        href="index.html"
+        style="color:white; margin:10px;"
+    >
+        🛍 Мағоза
+    </a>
+
+</nav>
+
+
+
+<h1 class="product-title">
+
+    📈 Омори фурӯш
+
+</h1>
+
+
+
+<section class="cart">
+
+    <h2>
+        💰 Фурӯши умумӣ
+    </h2>
+
+
+    <h1 id="totalSales">
+        0 сомонӣ
+    </h1>
+
+</section>
+
+
+
+<section
+    class="cart"
+    style="overflow-x:auto;"
+>
+
+    <h2>
+        📊 Графики фурӯш
+    </h2>
+
+
+    <canvas
+        id="salesChart"
+        width="700"
+        height="350"
+        style="
+        max-width:100%;
+        "
+    ></canvas>
+
+</section>
+
+
+
+<script src="i18n.js"></script>
+<script src="sales.js"></script>
+
+</body>
+
+</html>

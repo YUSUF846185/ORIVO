@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="tg">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ORIVO | Танзимот</title>
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="./authGuard.js"></script>
+    <script src="./orivoStore.js"></script>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+
+    <a href="index.html" class="brand">
+
+        <img
+            src="images/orivo-logo.png"
+            alt="ORIVO Logo"
+            class="brand-logo"
+        >
+
+        <div class="brand-info">
+
+            <div class="brand-name">
+                ORIVO
+            </div>
+
+            <div class="brand-subtitle">
+                TAJIKISTAN MARKETPLACE
+            </div>
+
+        </div>
+
+    </a>
+
+
+    <div class="menu">
+
+        <a
+            href="index.html"
+            class="header-link"
+            title="Мағоза"
+        >
+            🏠
+        </a>
+
+        <a
+            href="wishlist.html"
+            class="header-link"
+            title="Wishlist"
+        >
+            ❤️
+        </a>
+
+        <a
+            href="index.html#cart"
+            class="header-link"
+            title="Сабад"
+        >
+            🛒
+        </a>
+
+    </div>
+
+
+</header>
+
+
+
+<main class="settings-page">
+
+
+    <section class="settings-hero">
+
+        <div class="settings-hero-icon">
+            ⚙️
+        </div>
+
+        <h1>
+            Танзимот
+        </h1>
+
+        <p>
+            Интихоби забон ва намуди барнома
+        </p>
+
+    </section>
+
+
+
+    <section class="settings-card">
+
+        <h2>
+            Забонҳои барнома
+        </h2>
+
+        <p class="settings-hint">
+            Забонро интихоб кунед
+        </p>
+
+
+        <div class="settings-options" id="languageOptions">
+
+            <button
+                type="button"
+                class="settings-option"
+                data-lang="tg"
+            >
+                <span class="settings-flag">TJ</span>
+                <span class="settings-copy">
+                    <strong>Тоҷикӣ</strong>
+                    <small>Забони асосӣ</small>
+                </span>
+            </button>
+
+            <button
+                type="button"
+                class="settings-option"
+                data-lang="ru"
+            >
+                <span class="settings-flag">RU</span>
+                <span class="settings-copy">
+                    <strong>Русӣ</strong>
+                    <small>Русский</small>
+                </span>
+            </button>
+
+            <button
+                type="button"
+                class="settings-option"
+                data-lang="en"
+            >
+                <span class="settings-flag">EN</span>
+                <span class="settings-copy">
+                    <strong>Англисӣ</strong>
+                    <small>English</small>
+                </span>
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="settings-card">
+
+        <h2>
+            Намуди барнома
+        </h2>
+
+
+        <div class="settings-options theme-options">
+
+            <button
+                type="button"
+                class="settings-option"
+                id="lightThemeButton"
+                data-theme="light"
+            >
+                <span class="settings-flag" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 3v2M12 19v2M5 12H3M21 12h-2M6.2 6.2l1.4 1.4M16.4 16.4l1.4 1.4M6.2 17.8l1.4-1.4M16.4 7.6l1.4-1.4"></path>
+                    </svg>
+                </span>
+                <span class="settings-copy">
+                    <strong>Режими рӯшноӣ</strong>
+                    <small>Light</small>
+                </span>
+            </button>
+
+            <button
+                type="button"
+                class="settings-option"
+                id="darkThemeButton"
+                data-theme="dark"
+            >
+                <span class="settings-flag" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 14a7 7 0 1 1-8-10 7.5 7.5 0 0 0 8 10z"></path>
+                    </svg>
+                </span>
+                <span class="settings-copy">
+                    <strong>Режими торик</strong>
+                    <small>Dark</small>
+                </span>
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <a href="index.html" class="settings-back">
+        ← Ба мағоза
+    </a>
+    <button type="button" class="settings-back" id="orivoLogoutSettings">
+        Баромад аз ҳисоб
+    </button>
+
+
+</main>
+
+
+
+<footer>
+
+
+    <div class="footer-brand">
+
+        <img
+            src="images/orivo-logo.png"
+            alt="ORIVO"
+        >
+
+        <div>
+
+            <h3>
+                ORIVO
+            </h3>
+
+            <p>
+                TAJIKISTAN MARKETPLACE
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <p>
+        © 2026 ORIVO Marketplace
+    </p>
+
+
+</footer>
+
+
+
+<script src="./i18n.js"></script>
+<script src="./settings.js"></script>
+
+
+</body>
+
+</html>

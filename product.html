@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="tg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Маҳсулот | ORIVO</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="authGuard.js"></script>
+    <script src="orivoStore.js"></script>
+</head>
+
+<body>
+
+<header>
+    <a href="index.html" class="brand">
+        <img src="images/orivo-logo.png" alt="ORIVO Logo" class="brand-logo">
+        <div class="brand-info">
+            <div class="brand-name">ORIVO</div>
+            <div class="brand-subtitle">TAJIKISTAN MARKETPLACE</div>
+        </div>
+    </a>
+    <div class="menu">
+        <a href="index.html" class="header-link">← Ба мағоза</a>
+        <a href="wishlist.html" class="header-link" title="Wishlist">❤️</a>
+        <a href="index.html#cart" class="header-link" title="Сабад">🛒</a>
+        <button id="themeButton" class="theme-button" type="button" title="Тағйири режим">🌙</button>
+    </div>
+</header>
+
+<nav class="breadcrumb">
+    <a href="index.html">Мағоза</a> / <span id="crumbCategory">Маҳсулот</span> / <span id="crumbName">Маҳсулот</span>
+</nav>
+
+<main class="pdp">
+    <div class="pdp-gallery-wrap">
+        <div class="pdp-gallery">
+            <img id="productImage" alt="Маҳсулот">
+        </div>
+        <div class="pdp-thumbs" id="productThumbs"></div>
+    </div>
+
+    <section class="pdp-info" id="productDetails">
+        <p class="stock-badge" id="productStock">Дар анбор</p>
+        <h1 id="productName"></h1>
+        <div class="rating">★★★★★ <span>4.8</span> <span class="review-count">(124 шарҳ)</span></div>
+        <h2 class="pdp-price">
+            <span id="productPrice"></span> сомонӣ
+        </h2>
+        <p class="pdp-brand" id="productBrand"></p>
+        <p id="productAbout">Маҳсулоти босифат бо нархи дастрас.</p>
+
+        <div class="qty-box">
+            <span>Миқдор</span>
+            <button type="button" id="qtyMinus">−</button>
+            <input id="productQty" type="number" value="1" min="1">
+            <button type="button" id="qtyPlus">+</button>
+        </div>
+
+        <div class="pdp-actions">
+            <button id="addCart" type="button">Ба сабад</button>
+            <button id="buyNow" type="button">Ҳозир харидан</button>
+        </div>
+
+        <div class="pdp-meta">
+            <div id="productDelivery">Расонидан: 1–3 рӯз дар Душанбе</div>
+            <div>Фурӯшанда: ORIVO Official</div>
+            <div id="productWarranty">Кафолат: 12 моҳ</div>
+        </div>
+    </section>
+</main>
+
+<section class="pdp-block">
+    <h2>Мушаххасот</h2>
+    <table class="spec-table" id="productSpecs"></table>
+</section>
+
+<section class="pdp-block">
+    <h2>Маҳсулотҳои монанд</h2>
+    <div class="related-grid" id="relatedProducts"></div>
+</section>
+
+<section class="reviews-grid cart">
+    <h2>Рейтинг</h2>
+    <div id="ratingStars">
+        <button type="button" onclick="setRating(1)">★</button>
+        <button type="button" onclick="setRating(2)">★</button>
+        <button type="button" onclick="setRating(3)">★</button>
+        <button type="button" onclick="setRating(4)">★</button>
+        <button type="button" onclick="setRating(5)">★</button>
+    </div>
+    <p id="ratingText">Рейтинг интихоб нашудааст</p>
+</section>
+
+<section class="reviews-grid cart">
+    <h2>Шарҳ нависед</h2>
+    <input id="commentName" type="text" placeholder="Номи шумо">
+    <textarea id="commentText" placeholder="Шарҳи худро нависед..." rows="5"></textarea>
+    <button id="commentButton" type="button">Илова кардани шарҳ</button>
+</section>
+
+<section class="reviews-grid cart">
+    <h2>Шарҳҳои харидорон</h2>
+    <div id="commentsBox"></div>
+</section>
+
+<script src="catalog.js"></script>
+<script src="i18n.js"></script>
+<script src="product.js"></script>
+<script src="support.js"></script>
+
+<nav class="bottom-nav" aria-label="Навигация">
+    <a href="index.html">Хона</a>
+    <a href="index.html#categories">Категория</a>
+    <a href="index.html#cart">Сабад</a>
+    <a href="login.html">Ҳисоб</a>
+</nav>
+
+</body>
+</html>

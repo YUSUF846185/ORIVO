@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="tg">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ORIVO | Wishlist</title>
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="./authGuard.js"></script>
+    <script src="./orivoStore.js"></script>
+
+    <style>
+
+        /* =========================================
+           WISHLIST PAGE
+        ========================================= */
+
+        .wishlist-page {
+            width: 90%;
+            max-width: 1400px;
+            margin: 45px auto 80px;
+        }
+
+
+        .wishlist-hero {
+            padding: 45px 30px;
+            border-radius: 40px;
+
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(48, 180, 123, 0.22),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #062b20,
+                    #08764d
+                );
+
+            color: white;
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+
+        .wishlist-hero-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+
+        .wishlist-hero h1 {
+            font-size: clamp(30px, 5vw, 50px);
+            margin-bottom: 10px;
+            background: none;
+            box-shadow: none;
+            outline: none;
+            -webkit-text-fill-color: white;
+        }
+
+
+        .wishlist-hero p {
+            color: rgba(255,255,255,0.85);
+            font-size: 15px;
+        }
+
+
+        .wishlist-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .wishlist-toolbar h2 {
+            font-size: 25px;
+        }
+
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 12px 18px;
+
+            border-radius: 12px;
+
+            background: white;
+
+            border: 1px solid #dce5e0;
+
+            color: #08764d;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            transition: 0.25s;
+        }
+
+
+        .back-button:hover {
+            transform: translateY(-2px);
+
+            border-color: #08764d;
+
+            box-shadow:
+                0 8px 20px rgba(0,0,0,0.08);
+        }
+
+
+        #wishlistItems {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .wishlist-card {
+            overflow: hidden;
+
+            background: white;
+
+            border: 1px solid #e5ebe8;
+
+            border-radius: 20px;
+
+            transition: 0.3s;
+
+            position: relative;
+        }
+
+
+        .wishlist-card:hover {
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 18px 40px rgba(0,0,0,0.10);
+
+            border-color: #c7ded2;
+        }
+
+
+        .wishlist-image {
+            height: 220px;
+
+            background: #f7f9f8;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            position: relative;
+        }
+
+
+        .wishlist-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            padding: 20px;
+
+            transition: 0.35s;
+        }
+
+
+        .wishlist-card:hover
+        .wishlist-image img {
+            transform: scale(1.07);
+        }
+
+
+        .wishlist-heart {
+            position: absolute;
+
+            top: 12px;
+            right: 12px;
+
+            width: 40px;
+            height: 40px;
+
+            border-radius: 50%;
+
+            border: none;
+
+            background: white;
+
+            font-size: 18px;
+
+            box-shadow:
+                0 5px 15px rgba(0,0,0,0.10);
+        }
+
+
+        .wishlist-content {
+            padding: 18px;
+        }
+
+
+        .wishlist-category {
+            color: #08764d;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            margin-bottom: 8px;
+        }
+
+
+        .wishlist-content h3 {
+            font-size: 18px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .wishlist-price {
+            color: #08764d;
+
+            font-size: 19px;
+
+            font-weight: 900;
+
+            margin-bottom: 15px;
+        }
+
+
+        .wishlist-actions {
+            display: flex;
+
+            gap: 8px;
+        }
+
+
+        .wishlist-cart {
+            flex: 1;
+
+            min-height: 42px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background: #08764d;
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            transition: 0.25s;
+        }
+
+
+        .wishlist-cart:hover {
+            background: #E85D00;
+
+            transform: translateY(-2px);
+        }
+
+
+        .wishlist-remove {
+            width: 44px;
+
+            min-height: 42px;
+
+            border: 1px solid #dce5e0;
+
+            border-radius: 11px;
+
+            background: white;
+
+            font-size: 17px;
+
+            transition: 0.25s;
+        }
+
+
+        .wishlist-remove:hover {
+            background: #fff1f3;
+
+            border-color: #e36b7b;
+        }
+
+
+        /* =========================================
+           EMPTY WISHLIST
+        ========================================= */
+
+        .wishlist-empty {
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            padding: 70px 20px;
+
+            background: white;
+
+            border: 1px solid #e5ebe8;
+
+            border-radius: 24px;
+        }
+
+
+        .wishlist-empty-icon {
+            font-size: 60px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .wishlist-empty h2 {
+            margin-bottom: 10px;
+        }
+
+
+        .wishlist-empty p {
+            color: #7b8782;
+
+            margin-bottom: 25px;
+        }
+
+
+        .wishlist-shop {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 14px 22px;
+
+            border-radius: 13px;
+
+            background: #08764d;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: 800;
+
+            transition: 0.25s;
+        }
+
+
+        .wishlist-shop:hover {
+            background: #E85D00;
+
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================================
+           DARK MODE
+        ========================================= */
+
+        body.dark-mode .back-button {
+            background: #141e1a;
+
+            border-color: #304039;
+
+            color: #65dba7;
+        }
+
+
+        body.dark-mode .wishlist-card,
+        body.dark-mode .wishlist-empty {
+            background: #141e1a;
+
+            border-color: #28372f;
+
+            color: #edf5f1;
+        }
+
+
+        body.dark-mode .wishlist-card:hover {
+            border-color: #3c6653;
+        }
+
+
+        body.dark-mode .wishlist-image {
+            background: #19231f;
+        }
+
+
+        body.dark-mode .wishlist-heart {
+            background: #18221e;
+
+            color: white;
+        }
+
+
+        body.dark-mode .wishlist-remove {
+            background: #19231f;
+
+            border-color: #34453d;
+
+            color: white;
+        }
+
+
+        body.dark-mode .wishlist-empty p {
+            color: #8e9f96;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1100px) {
+
+            #wishlistItems {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 750px) {
+
+            .wishlist-page {
+                width: 92%;
+
+                margin-top: 25px;
+            }
+
+
+            .wishlist-toolbar {
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .back-button {
+                width: 100%;
+            }
+
+
+            #wishlistItems {
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 12px;
+            }
+
+
+            .wishlist-image {
+                height: 190px;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            #wishlistItems {
+                grid-template-columns: 1fr;
+            }
+
+
+            .wishlist-hero {
+                padding: 35px 20px;
+            }
+
+
+            .wishlist-hero h1 {
+                font-size: 32px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<header>
+
+
+    <a
+        href="index.html"
+        class="brand"
+    >
+
+        <img
+            src="images/orivo-logo.png"
+            alt="ORIVO Logo"
+            class="brand-logo"
+        >
+
+
+        <div class="brand-info">
+
+            <div class="brand-name">
+                ORIVO
+            </div>
+
+            <div class="brand-subtitle">
+                TAJIKISTAN MARKETPLACE
+            </div>
+
+        </div>
+
+    </a>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="wishlistSearch"
+            placeholder="🔍 Ҷустуҷӯ..."
+        >
+
+    </div>
+
+
+    <!-- MENU -->
+
+    <div class="menu">
+
+
+        <a
+            href="index.html"
+            class="header-link"
+        >
+
+            🏠
+
+            <span>
+                Home
+            </span>
+
+        </a>
+
+
+        <a
+            href="wishlist.html"
+            class="header-link"
+        >
+
+            ❤️
+
+            <span id="wishlistCount">
+                0
+            </span>
+
+        </a>
+
+
+        <a
+            href="index.html#cart"
+            class="header-link"
+        >
+
+            🛒
+
+            <span id="cartCount">
+                0
+            </span>
+
+        </a>
+
+
+        <button
+            id="themeButton"
+            class="theme-button"
+            type="button"
+        >
+
+            🌙
+
+        </button>
+
+
+    </div>
+
+
+</header>
+
+
+
+<!-- ==================================================
+     WISHLIST
+================================================== -->
+
+<main class="wishlist-page">
+
+
+    <!-- HERO -->
+
+    <section class="wishlist-hero">
+
+
+        <div class="wishlist-hero-icon">
+
+            ❤️
+
+        </div>
+
+
+        <h1 lang="en" spellcheck="false">
+
+            Wishlist
+
+        </h1>
+
+
+        <p>
+
+            Маҳсулотҳои дӯстдоштаи худро
+            дар як ҷо нигоҳ доред.
+
+        </p>
+
+
+    </section>
+
+
+
+    <!-- TOOLBAR -->
+
+    <div class="wishlist-toolbar">
+
+
+        <div>
+
+            <h2>
+
+                ❤️ Маҳсулотҳои дӯстдошта
+
+            </h2>
+
+        </div>
+
+
+        <a
+            href="index.html"
+            class="back-button"
+        >
+
+            ← Ба Marketplace
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- WISHLIST ITEMS -->
+
+    <div id="wishlistItems">
+
+    </div>
+
+
+</main>
+
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer>
+
+
+    <div class="footer-brand">
+
+
+        <img
+            src="images/orivo-logo.png"
+            alt="ORIVO"
+        >
+
+
+        <div>
+
+            <h3>
+                ORIVO
+            </h3>
+
+
+            <p>
+                TAJIKISTAN MARKETPLACE
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <p>
+
+        © 2026 ORIVO Marketplace
+
+    </p>
+
+
+</footer>
+
+
+
+<!-- ==================================================
+     WISHLIST JAVASCRIPT
+================================================== -->
+
+<script src="i18n.js"></script>
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        const wishlistItems =
+            document.getElementById(
+                "wishlistItems"
+            );
+
+
+        const wishlistCount =
+            document.getElementById(
+                "wishlistCount"
+            );
+
+
+        const cartCount =
+            document.getElementById(
+                "cartCount"
+            );
+
+
+        const themeButton =
+            document.getElementById(
+                "themeButton"
+            );
+
+
+        const searchInput =
+            document.getElementById(
+                "wishlistSearch"
+            );
+
+
+        /* =========================================
+           STORAGE
+        ========================================= */
+
+        let wishlist =
+            JSON.parse(
+                localStorage.getItem(
+                    "orivoWishlist"
+                )
+            ) || [];
+
+
+        let cart =
+            JSON.parse(
+                localStorage.getItem(
+                    "orivoCart"
+                )
+            ) || [];
+
+
+        /* =========================================
+           PRICE
+        ========================================= */
+
+        function formatPrice(price) {
+
+            return Number(price)
+                .toLocaleString("ru-RU");
+
+        }
+
+
+        /* =========================================
+           COUNTS
+        ========================================= */
+
+        function updateCounts() {
+
+
+            wishlistCount.textContent =
+                wishlist.length;
+
+
+            const count =
+                cart.reduce(
+                    (sum, item) =>
+                        sum +
+                        Number(
+                            item.quantity || 1
+                        ),
+                    0
+                );
+
+
+            cartCount.textContent =
+                count;
+
+        }
+
+
+        /* =========================================
+           SAVE
+        ========================================= */
+
+        function saveWishlist() {
+
+            localStorage.setItem(
+                "orivoWishlist",
+                JSON.stringify(wishlist)
+            );
+
+        }
+
+
+        function saveCart() {
+
+            localStorage.setItem(
+                "orivoCart",
+                JSON.stringify(cart)
+            );
+
+        }
+
+
+        /* =========================================
+           RENDER
+        ========================================= */
+
+        function renderWishlist(
+            search = ""
+        ) {
+
+
+            wishlistItems.innerHTML = "";
+
+
+            const filtered =
+                wishlist.filter(
+                    item =>
+                        item.name
+                            .toLowerCase()
+                            .includes(
+                                search
+                                    .toLowerCase()
+                            )
+                );
+
+
+            if (
+                filtered.length === 0
+            ) {
+
+
+                wishlistItems.innerHTML = `
+
+                    <div class="wishlist-empty">
+
+                        <div class="wishlist-empty-icon">
+
+                            ❤️
+
+                        </div>
+
+
+                        <h2>
+
+                            ${
+                                wishlist.length === 0
+                                ? "Wishlist холӣ аст"
+                                : "Маҳсулот ёфт нашуд"
+                            }
+
+                        </h2>
+
+
+                        <p>
+
+                            ${
+                                wishlist.length === 0
+                                ? "Маҳсулотҳои дӯстдоштаатонро аз Marketplace интихоб кунед."
+                                : "Номи дигар маҳсулотро ҷустуҷӯ кунед."
+                            }
+
+                        </p>
+
+
+                        <a
+                            href="index.html"
+                            class="wishlist-shop"
+                        >
+
+                            🛍 Ба харид рафтан
+
+                        </a>
+
+                    </div>
+
+                `;
+
+
+                return;
+
+            }
+
+
+            filtered.forEach(
+                (item) => {
+
+
+                    const realIndex =
+                        wishlist.findIndex(
+                            product =>
+                                product.name ===
+                                item.name
+                        );
+
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "wishlist-card";
+
+
+                    card.innerHTML = `
+
+                        <div class="wishlist-image">
+
+                            <img
+                                src="images/${item.image}"
+                                alt="${item.name}"
+                            >
+
+
+                            <button
+                                class="wishlist-heart"
+                                data-index="${realIndex}"
+                                title="Хориҷ кардан"
+                            >
+
+                                ❤️
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="wishlist-content">
+
+
+                            <div class="wishlist-category">
+
+                                🛍 ${item.category || "Маҳсулот"}
+
+                            </div>
+
+
+                            <h3>
+
+                                ${item.name}
+
+                            </h3>
+
+
+                            <div class="wishlist-price">
+
+                                ${formatPrice(item.price)}
+                                сомонӣ
+
+                            </div>
+
+
+                            <div class="wishlist-actions">
+
+
+                                <button
+                                    class="wishlist-cart"
+                                    data-index="${realIndex}"
+                                >
+
+                                    🛒 Ба сабад
+
+                                </button>
+
+
+                                <button
+                                    class="wishlist-remove"
+                                    data-index="${realIndex}"
+                                    title="Нест кардан"
+                                >
+
+                                    🗑️
+
+                                </button>
+
+
+                            </div>
+
+
+                        </div>
+
+                    `;
+
+
+                    wishlistItems.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+
+            attachButtons();
+
+        }
+
+
+        /* =========================================
+           ATTACH BUTTONS
+        ========================================= */
+
+        function attachButtons() {
+
+
+            document
+                .querySelectorAll(
+                    ".wishlist-heart"
+                )
+                .forEach(
+                    button => {
+
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+
+                                const index =
+                                    Number(
+                                        this.dataset.index
+                                    );
+
+
+                                removeWishlist(
+                                    index
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+
+            document
+                .querySelectorAll(
+                    ".wishlist-remove"
+                )
+                .forEach(
+                    button => {
+
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+
+                                const index =
+                                    Number(
+                                        this.dataset.index
+                                    );
+
+
+                                removeWishlist(
+                                    index
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+
+            document
+                .querySelectorAll(
+                    ".wishlist-cart"
+                )
+                .forEach(
+                    button => {
+
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+
+                                const index =
+                                    Number(
+                                        this.dataset.index
+                                    );
+
+
+                                addToCart(
+                                    wishlist[index]
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+        }
+
+
+        /* =========================================
+           REMOVE WISHLIST
+        ========================================= */
+
+        function removeWishlist(
+            index
+        ) {
+
+
+            if (
+                !wishlist[index]
+            ) {
+
+                return;
+
+            }
+
+
+            wishlist.splice(
+                index,
+                1
+            );
+
+
+            saveWishlist();
+
+            updateCounts();
+
+            renderWishlist(
+                searchInput.value
+            );
+
+        }
+
+
+        /* =========================================
+           ADD TO CART
+        ========================================= */
+
+        function addToCart(
+            product
+        ) {
+
+
+            if (!product) {
+
+                return;
+
+            }
+
+
+            const existing =
+                cart.find(
+                    item =>
+                        item.name ===
+                        product.name
+                );
+
+
+            if (existing) {
+
+
+                existing.quantity =
+                    Number(
+                        existing.quantity || 1
+                    ) + 1;
+
+
+            } else {
+
+
+                cart.push({
+
+                    name:
+                        product.name,
+
+                    price:
+                        Number(
+                            product.price
+                        ),
+
+                    image:
+                        product.image,
+
+                    category:
+                        product.category,
+
+                    quantity: 1
+
+                });
+
+            }
+
+
+            saveCart();
+
+            updateCounts();
+
+
+            showMessage(
+                "🛒 Ба сабад илова шуд!"
+            );
+
+        }
+
+
+        /* =========================================
+           SEARCH
+        ========================================= */
+
+        if (searchInput) {
+
+
+            searchInput.addEventListener(
+                "input",
+                function () {
+
+
+                    renderWishlist(
+                        this.value
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =========================================
+           DARK MODE
+        ========================================= */
+
+        const savedTheme =
+            localStorage.getItem(
+                "orivoTheme"
+            );
+
+
+        if (
+            savedTheme === "dark"
+        ) {
+
+
+            document.body.classList.add(
+                "dark-mode"
+            );
+
+
+            themeButton.textContent =
+                "☀️";
+
+        }
+
+
+        themeButton.addEventListener(
+            "click",
+            function () {
+
+
+                document.body.classList.toggle(
+                    "dark-mode"
+                );
+
+
+                const dark =
+                    document.body.classList.contains(
+                        "dark-mode"
+                    );
+
+
+                if (dark) {
+
+
+                    this.textContent =
+                        "☀️";
+
+
+                    localStorage.setItem(
+                        "orivoTheme",
+                        "dark"
+                    );
+
+
+                } else {
+
+
+                    this.textContent =
+                        "🌙";
+
+
+                    localStorage.setItem(
+                        "orivoTheme",
+                        "light"
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* =========================================
+           MESSAGE
+        ========================================= */
+
+        function showMessage(
+            message
+        ) {
+
+
+            const old =
+                document.querySelector(
+                    ".orivo-message"
+                );
+
+
+            if (old) {
+
+                old.remove();
+
+            }
+
+
+            const box =
+                document.createElement(
+                    "div"
+                );
+
+
+            box.className =
+                "orivo-message";
+
+
+            box.textContent =
+                message;
+
+
+            box.style.position =
+                "fixed";
+
+            box.style.right =
+                "25px";
+
+            box.style.bottom =
+                "25px";
+
+            box.style.zIndex =
+                "9999";
+
+            box.style.padding =
+                "14px 20px";
+
+            box.style.borderRadius =
+                "14px";
+
+            box.style.background =
+                "#08764d";
+
+            box.style.color =
+                "white";
+
+            box.style.fontWeight =
+                "700";
+
+            box.style.boxShadow =
+                "0 10px 30px rgba(0,0,0,0.2)";
+
+
+            document.body.appendChild(
+                box
+            );
+
+
+            setTimeout(
+                function () {
+
+                    box.remove();
+
+                },
+                2200
+            );
+
+        }
+
+
+        /* =========================================
+           START
+        ========================================= */
+
+        updateCounts();
+
+        renderWishlist();
+
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

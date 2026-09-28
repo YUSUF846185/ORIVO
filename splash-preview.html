@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORIVO sunrise</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="orivoSplash" class="orivo-splash" aria-hidden="true">
+    <div class="orivo-sky">
+        <div class="orivo-sky-night"></div>
+        <div class="orivo-sky-dawn"></div>
+        <div class="orivo-sky-gold"></div>
+    </div>
+    <div class="orivo-stars" id="orivoStars"></div>
+    <div class="orivo-sun-wrap">
+        <div class="orivo-sun-bloom"></div>
+        <div class="orivo-sun-corona"></div>
+        <div class="orivo-sun-core"></div>
+    </div>
+    <div class="orivo-clouds" aria-hidden="true">
+        <span class="orivo-cloud orivo-cloud-a"></span>
+        <span class="orivo-cloud orivo-cloud-b"></span>
+        <span class="orivo-cloud orivo-cloud-c"></span>
+    </div>
+    <svg class="orivo-range" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <defs>
+            <linearGradient id="orivoFarRidge" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#3d2a4a" />
+                <stop offset="55%" stop-color="#24182e" />
+                <stop offset="100%" stop-color="#140f1c" />
+            </linearGradient>
+            <linearGradient id="orivoLeftPeak" x1="0.15" y1="0" x2="0.7" y2="1">
+                <stop offset="0%" stop-color="#1c4d38" />
+                <stop offset="28%" stop-color="#123528" />
+                <stop offset="100%" stop-color="#06140e" />
+            </linearGradient>
+            <linearGradient id="orivoRightPeak" x1="0.3" y1="0" x2="0.85" y2="1">
+                <stop offset="0%" stop-color="#246348" />
+                <stop offset="36%" stop-color="#154232" />
+                <stop offset="100%" stop-color="#071810" />
+            </linearGradient>
+            <linearGradient id="orivoSnow" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fff7e8" />
+                <stop offset="70%" stop-color="#d8c4a6" />
+                <stop offset="100%" stop-color="#8a6f52" />
+            </linearGradient>
+            <linearGradient id="orivoValley" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0a1c14" />
+                <stop offset="100%" stop-color="#040a08" />
+            </linearGradient>
+        </defs>
+        <path class="orivo-ridge-far" fill="url(#orivoFarRidge)" d="M0 620 C 180 540, 280 500, 420 560 C 520 610, 620 500, 720 548 C 840 610, 960 470, 1080 540 C 1200 600, 1320 520, 1440 580 L 1440 900 L 0 900 Z" />
+        <path class="orivo-mountain orivo-mountain-left" fill="url(#orivoLeftPeak)" d="M-40 900 L 20 680 L 140 400 L 280 150 L 322 214 L 368 118 L 470 300 L 540 240 L 620 430 L 690 500 L 720 548 L 720 900 Z" />
+        <path class="orivo-snow orivo-snow-left" fill="url(#orivoSnow)" d="M280 150 L 322 214 L 300 220 L 284 190 L 266 214 L 248 196 Z" />
+        <path class="orivo-snow orivo-snow-left-b" fill="url(#orivoSnow)" opacity="0.85" d="M368 118 L 400 186 L 368 172 L 344 188 Z" />
+        <path class="orivo-mountain orivo-mountain-right" fill="url(#orivoRightPeak)" d="M720 900 L 720 548 L 750 500 L 820 360 L 900 190 L 958 108 L 996 168 L 1048 92 L 1160 270 L 1260 176 L 1380 360 L 1500 640 L 1500 900 Z" />
+        <path class="orivo-snow orivo-snow-right" fill="url(#orivoSnow)" d="M958 108 L 996 168 L 974 176 L 958 148 L 940 170 L 918 152 Z" />
+        <path class="orivo-snow orivo-snow-right-b" fill="url(#orivoSnow)" opacity="0.8" d="M1048 92 L 1084 168 L 1048 154 L 1024 172 Z" />
+        <path class="orivo-valley" fill="url(#orivoValley)" d="M0 820 C 220 770, 480 800, 720 760 C 980 720, 1220 780, 1440 740 L 1440 900 L 0 900 Z" />
+    </svg>
+    <div class="orivo-mist"></div>
+    <div class="orivo-haze"></div>
+    <div class="orivo-birds" aria-hidden="true">
+        <svg class="orivo-bird orivo-bird-a" viewBox="0 0 36 16"><path class="wing-l" d="M18 9 C 12 2, 5 1, 1 8" /><path class="wing-r" d="M18 9 C 24 2, 31 1, 35 8" /></svg>
+        <svg class="orivo-bird orivo-bird-b" viewBox="0 0 36 16"><path class="wing-l" d="M18 9 C 12 2, 5 1, 1 8" /><path class="wing-r" d="M18 9 C 24 2, 31 1, 35 8" /></svg>
+        <svg class="orivo-bird orivo-bird-c" viewBox="0 0 36 16"><path class="wing-l" d="M18 9 C 12 2, 5 1, 1 8" /><path class="wing-r" d="M18 9 C 24 2, 31 1, 35 8" /></svg>
+        <svg class="orivo-bird orivo-bird-d" viewBox="0 0 36 16"><path class="wing-l" d="M18 9 C 12 2, 5 1, 1 8" /><path class="wing-r" d="M18 9 C 24 2, 31 1, 35 8" /></svg>
+        <svg class="orivo-bird orivo-bird-e" viewBox="0 0 36 16"><path class="wing-l" d="M18 9 C 12 2, 5 1, 1 8" /><path class="wing-r" d="M18 9 C 24 2, 31 1, 35 8" /></svg>
+        <svg class="orivo-bird orivo-bird-f" viewBox="0 0 36 16"><path class="wing-l" d="M18 9 C 12 2, 5 1, 1 8" /><path class="wing-r" d="M18 9 C 24 2, 31 1, 35 8" /></svg>
+    </div>
+    <div class="orivo-splash-inner">
+        <div class="orivo-splash-name">OR<span>I</span>VO</div>
+        <div class="orivo-splash-line"></div>
+        <div class="orivo-splash-tag">ВСЁ ЛУЧШЕЕ — ДЛЯ ВАС</div>
+        <div class="orivo-splash-text">TAJIKISTAN MARKETPLACE</div>
+        <div class="orivo-splash-skip">Нажмите, чтобы продолжить</div>
+    </div>
+</div>
+<script src="./splash.js"></script>
+</body>
+</html>

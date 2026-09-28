@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="tg">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - Marketplace</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+    <script src="authGuard.js"></script>
+    <script src="orivoStore.js"></script>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     HEADER
+===================================== -->
+
+<header>
+
+    <div class="logo">
+
+        📊 Admin Panel
+
+    </div>
+
+
+    <div
+        id="adminUser"
+        style="
+        color:white;
+        "
+    >
+
+        👤 Admin
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================
+     ADMIN MENU
+===================================== -->
+
+<nav
+    style="
+    padding:20px;
+    text-align:center;
+    background:#222;
+    "
+>
+
+
+    <a
+        href="dashboard.html"
+        style="
+        color:white;
+        margin:10px;
+        text-decoration:none;
+        "
+    >
+
+        📊 Dashboard
+
+    </a>
+
+
+    <a
+        href="admin.html"
+        style="
+        color:white;
+        margin:10px;
+        text-decoration:none;
+        "
+    >
+
+        📦 Маҳсулот
+
+    </a>
+
+
+    <a
+        href="orders.html"
+        style="
+        color:white;
+        margin:10px;
+        text-decoration:none;
+        "
+    >
+
+        🧾 Фармоишҳо
+
+    </a>
+
+
+    <a
+        href="sales.html"
+        style="
+        color:white;
+        margin:10px;
+        text-decoration:none;
+        "
+    >
+
+        📈 Фурӯш
+
+    </a>
+
+
+    <a
+        href="dashboard.html#supportInbox"
+        style="
+        color:white;
+        margin:10px;
+        text-decoration:none;
+        "
+    >
+
+        💬 Паёмҳо
+
+    </a>
+
+
+    <a
+        href="index.html"
+        style="
+        color:white;
+        margin:10px;
+        text-decoration:none;
+        "
+    >
+
+        🛍 Мағоза
+
+    </a>
+
+
+</nav>
+
+
+
+<!-- =====================================
+     TITLE
+===================================== -->
+
+<h1
+    class="product-title"
+>
+
+    📊 Admin Dashboard
+
+</h1>
+
+
+
+<!-- =====================================
+     STATISTICS
+===================================== -->
+
+<section
+    class="products"
+>
+
+
+    <!-- PRODUCTS -->
+
+    <div
+        class="card"
+        style="
+        text-align:center;
+        "
+    >
+
+        <h1>
+
+            📦
+
+        </h1>
+
+
+        <h2>
+
+            Маҳсулот
+
+        </h2>
+
+
+        <p
+            id="productsCount"
+            class="price"
+        >
+
+            0
+
+        </p>
+
+
+        <p>
+
+            маҳсулот
+
+        </p>
+
+    </div>
+
+
+
+    <!-- ORDERS -->
+
+    <div
+        class="card"
+        style="
+        text-align:center;
+        "
+    >
+
+        <h1>
+
+            🧾
+
+        </h1>
+
+
+        <h2>
+
+            Фармоишҳо
+
+        </h2>
+
+
+        <p
+            id="ordersCount"
+            class="price"
+        >
+
+            0
+
+        </p>
+
+
+        <p>
+
+            фармоиш
+
+        </p>
+
+    </div>
+
+
+
+    <!-- USERS -->
+
+    <div
+        class="card"
+        style="
+        text-align:center;
+        "
+    >
+
+        <h1>
+
+            👥
+
+        </h1>
+
+
+        <h2>
+
+            Корбарон
+
+        </h2>
+
+
+        <p
+            id="usersCount"
+            class="price"
+        >
+
+            0
+
+        </p>
+
+
+        <p>
+
+            корбар
+
+        </p>
+
+    </div>
+
+
+
+    <!-- SALES -->
+
+    <div
+        class="card"
+        style="
+        text-align:center;
+        "
+    >
+
+        <h1>
+
+            💰
+
+        </h1>
+
+
+        <h2>
+
+            Фурӯш
+
+        </h2>
+
+
+        <p
+            id="totalSales"
+            class="price"
+        >
+
+            0
+
+        </p>
+
+
+        <p>
+
+            сомонӣ
+
+        </p>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================
+     QUICK ACTIONS
+===================================== -->
+
+<section
+    class="cart"
+    style="
+    max-width:900px;
+    margin:30px auto;
+    text-align:center;
+    "
+>
+
+
+    <h2>
+
+        ⚡ Амалҳои зуд
+
+    </h2>
+
+
+    <br>
+
+
+
+    <a href="admin.html">
+
+        <button>
+
+            ➕ Илова кардани маҳсулот
+
+        </button>
+
+    </a>
+
+
+    <br>
+    <br>
+
+
+    <a href="orders.html">
+
+        <button>
+
+            🧾 Дидани фармоишҳо
+
+        </button>
+
+    </a>
+
+
+    <br>
+    <br>
+
+
+    <a href="sales.html">
+
+        <button>
+
+            📈 Графики фурӯш
+
+        </button>
+
+    </a>
+
+
+    <br>
+    <br>
+
+
+    <a href="index.html">
+
+        <button>
+
+            🛍 Ба мағоза
+
+        </button>
+
+    </a>
+
+
+</section>
+
+
+
+<!-- =====================================
+     RECENT ORDERS
+===================================== -->
+
+<section
+    class="cart"
+    style="
+    max-width:900px;
+    margin:30px auto;
+    "
+>
+
+
+    <h2>
+
+        🧾 Фармоишҳои охирин
+
+    </h2>
+
+
+    <div id="recentOrders">
+
+        <p>
+
+            📭 Ҳоло фармоиш нест.
+
+        </p>
+
+    </div>
+
+
+</section>
+
+
+
+<section
+    class="cart-section"
+    id="supportInbox"
+>
+
+    <h2>
+        Паёмҳои харидорон
+    </h2>
+
+    <p>
+        Одамоне, ки барномаро нафаҳмиданд, дар ин ҷо менависанд.
+    </p>
+
+    <div id="supportMessages">
+        <p>Ҳоло паём нест.</p>
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+     LOGOUT
+===================================== -->
+
+<section
+    style="
+    text-align:center;
+    margin:40px;
+    "
+>
+
+
+    <button
+        id="adminLogout"
+    >
+
+        🚪 Баромадан аз Admin
+
+    </button>
+
+
+</section>
+
+
+
+<!-- =====================================
+     FOOTER
+===================================== -->
+
+<footer
+    style="
+    text-align:center;
+    padding:30px;
+    "
+>
+
+
+    <h3>
+
+        🛍 Marketplace Admin
+
+    </h3>
+
+
+    <p>
+
+        © 2026 Marketplace
+
+    </p>
+
+
+</footer>
+
+
+
+<!-- =====================================
+     ADMIN SECURITY
+===================================== -->
+
+<script src="i18n.js"></script>
+<script src="adminGuard.js"></script>
+
+
+
+<!-- =====================================
+     DASHBOARD JAVASCRIPT
+===================================== -->
+
+<script src="dashboard.js"></script>
+
+
+
+<!-- =====================================
+     ADMIN LOGOUT
+===================================== -->
+
+<script>
+
+const adminLogout =
+    document.getElementById(
+        "adminLogout"
+    );
+
+
+if (adminLogout) {
+
+    adminLogout.addEventListener(
+        "click",
+        function() {
+
+            localStorage.removeItem(
+                "currentUser"
+            );
+
+            alert(
+                "👋 Шумо аз Admin Panel баромадед."
+            );
+
+            window.location =
+                "login.html";
+
+        }
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

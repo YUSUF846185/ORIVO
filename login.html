@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Воридшавӣ | ORIVO</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="authGuard.js"></script>
+</head>
+
+<body class="auth-page">
+
+<header>
+
+    <a href="login.html" class="brand">
+        <img src="images/orivo-logo.png" alt="ORIVO Logo" class="brand-logo">
+        <div class="brand-info">
+            <div class="brand-name">ORIVO</div>
+            <div class="brand-subtitle">TAJIKISTAN MARKETPLACE</div>
+        </div>
+    </a>
+
+    <div class="menu">
+        <button id="themeButton" class="theme-button" type="button" title="Тағйири режим">🌙</button>
+    </div>
+
+</header>
+
+<main class="auth-stage">
+
+    <div class="auth-backdrop" aria-hidden="true">
+        <div class="welcome-sky">
+            <div class="welcome-sun"></div>
+            <svg class="welcome-peaks" viewBox="0 0 800 220" preserveAspectRatio="none">
+                <path class="welcome-peak-back" d="M0 220 L210 118 L390 220 Z"></path>
+                <path class="welcome-peak-front" d="M280 220 L455 102 L680 220 Z"></path>
+                <path class="welcome-peak-far" d="M560 220 L720 130 L800 175 L800 220 Z"></path>
+            </svg>
+        </div>
+    </div>
+
+    <section class="auth-card">
+        <p class="auth-kicker">Ҳисоби шахсӣ</p>
+        <h1>Воридшавӣ</h1>
+        <p class="auth-lead">Ба аккаунти худ ворид шавед.</p>
+
+        <form id="loginForm" class="auth-form" novalidate>
+            <label class="auth-field">
+                <span>Email</span>
+                <input
+                    id="loginEmail"
+                    type="text"
+                    name="email"
+                    placeholder="name@email.com"
+                    autocomplete="username"
+                    required
+                >
+            </label>
+
+            <label class="auth-field">
+                <span>Парол</span>
+                <input
+                    id="loginPassword"
+                    type="password"
+                    name="password"
+                    placeholder="••••••••"
+                    autocomplete="current-password"
+                    required
+                >
+            </label>
+
+            <button id="loginButton" class="auth-submit" type="submit">
+                Ворид шудан
+            </button>
+        </form>
+
+        <p class="auth-switch">
+            Аккаунт надоред?
+            <a href="register.html">Сабти ном</a>
+        </p>
+    </section>
+
+</main>
+
+<script src="i18n.js"></script>
+<script src="login.js"></script>
+
+<nav class="bottom-nav" aria-label="Навигация">
+    <a class="active" href="login.html">Воридшавӣ</a>
+    <a href="register.html">Сабти ном</a>
+</nav>
+
+</body>
+
+</html>

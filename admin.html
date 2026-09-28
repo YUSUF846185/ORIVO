@@ -1,0 +1,2801 @@
+<!DOCTYPE html>
+<html lang="tg">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ORIVO | Admin Panel</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+    <script src="authGuard.js"></script>
+    <script src="orivoStore.js"></script>
+
+    <style>
+
+        /* =========================================
+           ADMIN
+        ========================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            background: #f5f8f6;
+            color: #18241f;
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        .admin-header {
+
+            height: 75px;
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #e4ebe7;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 30px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+        }
+
+
+        .admin-brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            text-decoration: none;
+
+            color: #17251f;
+
+        }
+
+
+        .admin-brand img {
+
+            width: 45px;
+
+            height: 45px;
+
+            object-fit: contain;
+
+            border-radius: 23px;
+
+        }
+
+
+        .admin-brand-name {
+
+            font-size: 22px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .admin-brand-subtitle {
+
+            font-size: 9px;
+
+            color: #77857e;
+
+            margin-top: 2px;
+
+            letter-spacing: .8px;
+
+        }
+
+
+        .admin-header-right {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+
+        .admin-home {
+
+            padding: 10px 15px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            color: #08764d;
+
+            background: #eaf8f1;
+
+            font-weight: 800;
+
+        }
+
+
+        .admin-logout {
+
+            border: none;
+
+            padding: 10px 15px;
+
+            border-radius: 10px;
+
+            background: #fff0f2;
+
+            color: #c0394f;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+        }
+
+
+        /* =========================================
+           LAYOUT
+        ========================================= */
+
+        .admin-layout {
+
+            display: flex;
+
+            min-height: calc(100vh - 75px);
+
+        }
+
+
+        /* =========================================
+           SIDEBAR
+        ========================================= */
+
+        .admin-sidebar {
+
+            width: 250px;
+
+            background: #063d2c;
+
+            padding: 25px 15px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .admin-sidebar-title {
+
+            color: #8db9a8;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            padding: 0 12px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .admin-nav {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
+
+        }
+
+
+        .admin-nav button {
+
+            width: 100%;
+
+            border: none;
+
+            background: transparent;
+
+            color: #dcebe5;
+
+            text-align: left;
+
+            padding: 13px 14px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s;
+
+        }
+
+
+        .admin-nav button:hover,
+
+        .admin-nav button.active {
+
+            background: #08764d;
+
+            color: white;
+
+        }
+
+
+        /* =========================================
+           CONTENT
+        ========================================= */
+
+        .admin-content {
+
+            flex: 1;
+
+            padding: 30px;
+
+            max-width: 1500px;
+
+        }
+
+
+        .admin-section {
+
+            display: none;
+
+        }
+
+
+        .admin-section.active {
+
+            display: block;
+
+        }
+
+
+        .admin-title {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .admin-title h1 {
+
+            margin: 0 0 6px;
+
+            font-size: 30px;
+
+        }
+
+
+        .admin-title p {
+
+            margin: 0;
+
+            color: #75837c;
+
+        }
+
+
+        /* =========================================
+           STATISTICS
+        ========================================= */
+
+        .stats-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .stat-card {
+
+            background: white;
+
+            border: 1px solid #e4ebe7;
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,.04);
+
+        }
+
+
+        .stat-icon {
+
+            width: 45px;
+
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #eaf8f1;
+
+            font-size: 22px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .stat-card h3 {
+
+            margin: 0 0 6px;
+
+            font-size: 13px;
+
+            color: #7a8781;
+
+        }
+
+
+        .stat-card strong {
+
+            font-size: 28px;
+
+            color: #08764d;
+
+        }
+
+
+        /* =========================================
+           PANEL
+        ========================================= */
+
+        .admin-panel {
+
+            background: white;
+
+            border: 1px solid #e4ebe7;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,.04);
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .panel-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .panel-header h2 {
+
+            margin: 0;
+
+            font-size: 20px;
+
+        }
+
+
+        /* =========================================
+           BUTTONS
+        ========================================= */
+
+        .primary-button {
+
+            border: none;
+
+            background: #08764d;
+
+            color: white;
+
+            padding: 11px 17px;
+
+            border-radius: 10px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: .2s;
+
+        }
+
+
+        .primary-button:hover {
+
+            background: #E85D00;
+
+            transform: translateY(-1px);
+
+        }
+
+
+        .danger-button {
+
+            border: none;
+
+            background: #fff0f2;
+
+            color: #c0394f;
+
+            padding: 9px 12px;
+
+            border-radius: 9px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+        }
+
+
+        .edit-button {
+
+            border: none;
+
+            background: #edf5ff;
+
+            color: #2871b9;
+
+            padding: 9px 12px;
+
+            border-radius: 9px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+        }
+
+
+        /* =========================================
+           PRODUCTS
+        ========================================= */
+
+        .products-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+        }
+
+
+        .admin-product {
+
+            border: 1px solid #e6ece9;
+
+            border-radius: 15px;
+
+            padding: 14px;
+
+            background: #fbfcfc;
+
+        }
+
+
+        .admin-product img {
+
+            width: 100%;
+
+            height: 150px;
+
+            object-fit: contain;
+
+            background: white;
+
+            border-radius: 12px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .admin-product h3 {
+
+            margin: 0 0 5px;
+
+            font-size: 15px;
+
+        }
+
+
+        .admin-product-price {
+
+            color: #08764d;
+
+            font-weight: 900;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .product-actions {
+
+            display: flex;
+
+            gap: 7px;
+
+        }
+
+
+        .product-actions button {
+
+            flex: 1;
+
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+        }
+
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+
+        }
+
+
+        .form-group.full {
+
+            grid-column: 1 / -1;
+
+        }
+
+
+        .form-group label {
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+        }
+
+
+        .form-group input,
+
+        .form-group select,
+
+        .form-group textarea {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #dce5e0;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-size: 14px;
+
+        }
+
+
+        .form-group input:focus,
+
+        .form-group select:focus,
+
+        .form-group textarea:focus {
+
+            border-color: #08764d;
+
+        }
+
+
+        .form-group textarea {
+
+            min-height: 100px;
+
+            resize: vertical;
+
+        }
+
+
+        /* =========================================
+           ORDERS TABLE
+        ========================================= */
+
+        .table-wrapper {
+
+            overflow-x: auto;
+
+        }
+
+
+        .orders-table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 800px;
+
+        }
+
+
+        .orders-table th {
+
+            background: #f4f7f5;
+
+            text-align: left;
+
+            padding: 13px;
+
+            font-size: 12px;
+
+            color: #697770;
+
+        }
+
+
+        .orders-table td {
+
+            padding: 14px 13px;
+
+            border-bottom: 1px solid #edf1ef;
+
+            font-size: 13px;
+
+        }
+
+
+        .status {
+
+            display: inline-block;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            background: #eaf8f1;
+
+            color: #08764d;
+
+            font-weight: 800;
+
+            font-size: 11px;
+
+        }
+
+
+        /* =========================================
+           EMPTY
+        ========================================= */
+
+        .admin-empty {
+
+            text-align: center;
+
+            padding: 45px 20px;
+
+            color: #78857f;
+
+        }
+
+
+        .admin-empty-icon {
+
+            font-size: 50px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 1100px) {
+
+            .stats-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .products-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 750px) {
+
+            .admin-layout {
+
+                flex-direction: column;
+
+            }
+
+
+            .admin-sidebar {
+
+                width: 100%;
+
+                padding: 10px;
+
+            }
+
+
+            .admin-nav {
+
+                flex-direction: row;
+
+                overflow-x: auto;
+
+            }
+
+
+            .admin-nav button {
+
+                white-space: nowrap;
+
+                width: auto;
+
+            }
+
+
+            .admin-content {
+
+                padding: 20px 15px;
+
+            }
+
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .form-group.full {
+
+                grid-column: auto;
+
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .stats-grid,
+
+            .products-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .admin-header {
+
+                padding: 0 15px;
+
+            }
+
+
+            .admin-brand-subtitle {
+
+                display: none;
+
+            }
+
+
+            .admin-home {
+
+                display: none;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header class="admin-header">
+
+
+    <a
+        href="index.html"
+        class="admin-brand"
+    >
+
+        <img
+            src="images/orivo-logo.png"
+            alt="ORIVO"
+        >
+
+
+        <div>
+
+            <div class="admin-brand-name">
+                ORIVO
+            </div>
+
+
+            <div class="admin-brand-subtitle">
+                ADMIN PANEL
+            </div>
+
+        </div>
+
+    </a>
+
+
+
+    <div class="admin-header-right">
+
+
+        <a
+            href="index.html"
+            class="admin-home"
+        >
+
+            🏠 Marketplace
+
+        </a>
+
+
+        <button
+            id="logoutButton"
+            class="admin-logout"
+            type="button"
+        >
+
+            🚪 Баромадан
+
+        </button>
+
+    </div>
+
+
+</header>
+
+
+
+<!-- =========================================
+     LAYOUT
+========================================= -->
+
+<div class="admin-layout">
+
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="admin-sidebar">
+
+
+        <div class="admin-sidebar-title">
+
+            MENU
+
+        </div>
+
+
+        <nav class="admin-nav">
+
+
+            <button
+                class="admin-nav-button active"
+                data-section="dashboard"
+            >
+
+                📊 Dashboard
+
+            </button>
+
+
+            <button
+                class="admin-nav-button"
+                data-section="products"
+            >
+
+                📦 Маҳсулотҳо
+
+            </button>
+
+
+            <button
+                class="admin-nav-button"
+                data-section="add-product"
+            >
+
+                ➕ Илова кардани маҳсулот
+
+            </button>
+
+
+            <button
+                class="admin-nav-button"
+                data-section="orders"
+            >
+
+                🧾 Фармоишҳо
+
+            </button>
+
+
+            <button
+                class="admin-nav-button"
+                data-section="users"
+            >
+
+                👥 Корбарон
+
+            </button>
+
+
+        </nav>
+
+
+    </aside>
+
+
+
+    <!-- =====================================
+         CONTENT
+    ====================================== -->
+
+    <main class="admin-content">
+
+
+
+        <!-- =================================
+             DASHBOARD
+        ================================= -->
+
+        <section
+            id="dashboard"
+            class="admin-section active"
+        >
+
+
+            <div class="admin-title">
+
+                <h1>
+                    📊 Dashboard
+                </h1>
+
+                <p>
+                    Хуш омадед ба панели идоракунии ORIVO.
+                </p>
+
+            </div>
+
+
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📦
+                    </div>
+
+                    <h3>
+                        Маҳсулотҳо
+                    </h3>
+
+                    <strong id="statProducts">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🧾
+                    </div>
+
+                    <h3>
+                        Фармоишҳо
+                    </h3>
+
+                    <strong id="statOrders">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        👥
+                    </div>
+
+                    <h3>
+                        Корбарон
+                    </h3>
+
+                    <strong id="statUsers">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        💰
+                    </div>
+
+                    <h3>
+                        Даромад
+                    </h3>
+
+                    <strong id="statRevenue">
+                        0
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="admin-panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        🧾 Охирин фармоишҳо
+                    </h2>
+
+                    <button
+                        class="primary-button"
+                        data-open-section="orders"
+                    >
+
+                        Ҳамаашро дидан
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="recentOrders"
+                    class="table-wrapper"
+                >
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             PRODUCTS
+        ================================= -->
+
+        <section
+            id="products"
+            class="admin-section"
+        >
+
+
+            <div class="admin-title">
+
+                <h1>
+                    📦 Маҳсулотҳо
+                </h1>
+
+                <p>
+                    Маҳсулоти Marketplace-ро идора кунед.
+                </p>
+
+            </div>
+
+
+            <div class="admin-panel">
+
+
+                <div class="panel-header">
+
+                    <h2>
+                        Ҳамаи маҳсулотҳо
+                    </h2>
+
+
+                    <button
+                        class="primary-button"
+                        data-open-section="add-product"
+                    >
+
+                        ➕ Маҳсулоти нав
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="adminProducts"
+                    class="products-grid"
+                >
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             ADD PRODUCT
+        ================================= -->
+
+        <section
+            id="add-product"
+            class="admin-section"
+        >
+
+
+            <div class="admin-title">
+
+                <h1>
+                    ➕ Маҳсулоти нав
+                </h1>
+
+                <p>
+                    Ба ORIVO маҳсулоти нав илова кунед. Танҳо соҳиби мағоза метавонад маҳсулот бор кунад. Харидорон фақат мехаранд.
+                </p>
+
+            </div>
+
+
+            <div class="admin-panel">
+
+
+                <form id="productForm">
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Номи маҳсулот
+                            </label>
+
+                            <input
+                                id="productName"
+                                type="text"
+                                placeholder="Масалан: iPhone 16 Pro"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Нарх
+                            </label>
+
+                            <input
+                                id="productPrice"
+                                type="number"
+                                placeholder="12000"
+                                min="0"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Категория
+                            </label>
+
+                            <select
+                                id="productCategory"
+                                required
+                            >
+
+                                <option value="">
+                                    Категорияро интихоб кунед
+                                </option>
+
+                                <option value="phone">
+                                    📱 Телефон
+                                </option>
+
+                                <option value="laptop">
+                                    💻 Ноутбук
+                                </option>
+
+                                <option value="headphones">
+                                    🎧 Гӯшмонак
+                                </option>
+
+                                <option value="watch">
+                                    ⌚ Соат
+                                </option>
+
+                                <option value="tv">
+                                    📺 Телевизор
+                                </option>
+
+                                <option value="home">
+                                    🏠 Хона
+                                </option>
+
+                                <option value="clothes">
+                                    👕 Либос
+                                </option>
+
+                                <option value="sport">
+                                    ⚽ Варзиш
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Номи файл
+                            </label>
+
+                            <input
+                                id="productImage"
+                                type="text"
+                                placeholder="iphone16.png"
+                            >
+
+                            <input
+                                id="productImageFile"
+                                type="file"
+                                accept="image/*"
+                                style="margin-top:10px"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label>
+                                Тавсифи маҳсулот
+                            </label>
+
+                            <textarea
+                                id="productDescription"
+                                placeholder="Тавсифи кӯтоҳи маҳсулот..."
+                            ></textarea>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <br>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+
+                        ✅ Илова кардани маҳсулот
+
+                    </button>
+
+
+                </form>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             ORDERS
+        ================================= -->
+
+        <section
+            id="orders"
+            class="admin-section"
+        >
+
+
+            <div class="admin-title">
+
+                <h1>
+                    🧾 Фармоишҳо
+                </h1>
+
+                <p>
+                    Фармоишҳои муштариёнро идора кунед.
+                </p>
+
+            </div>
+
+
+            <div class="admin-panel">
+
+
+                <div class="table-wrapper">
+
+
+                    <table class="orders-table">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Харидор
+                                </th>
+
+                                <th>
+                                    Телефон
+                                </th>
+
+                                <th>
+                                    Маблағ
+                                </th>
+
+                                <th>
+                                    Сана
+                                </th>
+
+                                <th>
+                                    Статус
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            id="adminOrders"
+                        >
+
+                        </tbody>
+
+
+                    </table>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             USERS
+        ================================= -->
+
+        <section
+            id="users"
+            class="admin-section"
+        >
+
+
+            <div class="admin-title">
+
+                <h1>
+                    👥 Корбарон
+                </h1>
+
+                <p>
+                    Корбарони Marketplace.
+                </p>
+
+            </div>
+
+
+            <div class="admin-panel">
+
+
+                <div
+                    id="adminUsers"
+                >
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+
+<script src="i18n.js"></script>
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        // =====================================
+        // NAVIGATION
+        // =====================================
+
+        const navButtons =
+            document.querySelectorAll(
+                ".admin-nav-button"
+            );
+
+
+        const sections =
+            document.querySelectorAll(
+                ".admin-section"
+            );
+
+
+        function openSection(
+            sectionName
+        ) {
+
+
+            sections.forEach(
+                function (section) {
+
+                    section.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+
+            navButtons.forEach(
+                function (button) {
+
+                    button.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+
+            const target =
+                document.getElementById(
+                    sectionName
+                );
+
+
+            if (target) {
+
+                target.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            navButtons.forEach(
+                function (button) {
+
+                    if (
+                        button.dataset.section ===
+                        sectionName
+                    ) {
+
+                        button.classList.add(
+                            "active"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        navButtons.forEach(
+            function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        openSection(
+                            this.dataset.section
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        document
+            .querySelectorAll(
+                "[data-open-section]"
+            )
+            .forEach(
+                function (button) {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            openSection(
+                                this.dataset.openSection
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        // =====================================
+        // STORAGE
+        // =====================================
+
+        let orders =
+            JSON.parse(
+                localStorage.getItem(
+                    "orivoOrders"
+                )
+            ) || [];
+
+
+        let users =
+            JSON.parse(
+                localStorage.getItem(
+                    "orivoUsers"
+                )
+            ) || [];
+
+
+        let products =
+            JSON.parse(
+                localStorage.getItem(
+                    "orivoProducts"
+                )
+            ) || [];
+
+
+
+        // =====================================
+        // DEFAULT PRODUCTS
+        // =====================================
+
+        if (products.length === 0) {
+
+            products = [
+
+                {
+                    id: "phone-1",
+                    name: "iPhone 15 Pro",
+                    price: 12000,
+                    category: "phone",
+                    image: "phone.png"
+                },
+
+                {
+                    id: "laptop-1",
+                    name: "MacBook Pro",
+                    price: 22000,
+                    category: "laptop",
+                    image: "laptop.png"
+                },
+
+                {
+                    id: "headphones-1",
+                    name: "AirPods Pro",
+                    price: 3200,
+                    category: "headphones",
+                    image: "headphones.png"
+                },
+
+                {
+                    id: "watch-1",
+                    name: "Apple Watch",
+                    price: 4500,
+                    category: "watch",
+                    image: "watch.png"
+                },
+
+                {
+                    id: "tv-1",
+                    name: "Smart TV",
+                    price: 7500,
+                    category: "tv",
+                    image: "tv.png"
+                },
+
+                {
+                    id: "phone-2",
+                    name: "Samsung Galaxy S24",
+                    price: 9800,
+                    category: "phone",
+                    image: "samsung-s24.png"
+                },
+
+                {
+                    id: "laptop-2",
+                    name: "HP Pavilion",
+                    price: 14500,
+                    category: "laptop",
+                    image: "hp-pavilion.png"
+                },
+
+                {
+                    id: "home-1",
+                    name: "Dyson V15",
+                    price: 4500,
+                    category: "home",
+                    image: "dyson-v15.png"
+                },
+
+                {
+                    id: "clothes-1",
+                    name: "Nike Air Force 1",
+                    price: 1450,
+                    category: "clothes",
+                    image: "nike-af1.png"
+                },
+
+                {
+                    id: "sport-1",
+                    name: "Тӯби футбол",
+                    price: 180,
+                    category: "sport",
+                    image: "football.png"
+                }
+
+            ];
+
+
+            localStorage.setItem(
+                "orivoProducts",
+                JSON.stringify(products)
+            );
+
+        }
+
+
+
+        // =====================================
+        // FORMAT PRICE
+        // =====================================
+
+        function formatPrice(price) {
+
+            return Number(
+                price || 0
+            ).toLocaleString(
+                "ru-RU"
+            );
+
+        }
+
+
+
+        // =====================================
+        // DASHBOARD STATS
+        // =====================================
+
+        function updateStats() {
+
+
+            const statProducts =
+                document.getElementById(
+                    "statProducts"
+                );
+
+
+            const statOrders =
+                document.getElementById(
+                    "statOrders"
+                );
+
+
+            const statUsers =
+                document.getElementById(
+                    "statUsers"
+                );
+
+
+            const statRevenue =
+                document.getElementById(
+                    "statRevenue"
+                );
+
+
+            let revenue = 0;
+
+
+            orders.forEach(
+                function (order) {
+
+                    revenue += Number(
+                        order.total || 0
+                    );
+
+                }
+            );
+
+
+            statProducts.textContent =
+                products.length;
+
+
+            statOrders.textContent =
+                orders.length;
+
+
+            statUsers.textContent =
+                users.length;
+
+
+            statRevenue.textContent =
+                formatPrice(
+                    revenue
+                ) + " с.";
+
+
+        }
+
+
+
+        // =====================================
+        // PRODUCTS
+        // =====================================
+
+        function renderProducts() {
+
+
+            const container =
+                document.getElementById(
+                    "adminProducts"
+                );
+
+
+            if (
+                products.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <div class="admin-empty">
+
+                        <div class="admin-empty-icon">
+                            📦
+                        </div>
+
+                        <h3>
+                            Маҳсулот нест
+                        </h3>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            container.innerHTML = "";
+
+
+            products.forEach(
+                function (product) {
+
+
+                    const image =
+                        product.image
+                            ? "images/" +
+                              product.image
+                            : "images/orivo-logo.png";
+
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "admin-product";
+
+
+                    card.innerHTML = `
+
+                        <img
+                            src="${image}"
+                            alt="${product.name}"
+                            onerror="
+                                this.src='images/orivo-logo.png'
+                            "
+                        >
+
+
+                        <h3>
+                            ${product.name}
+                        </h3>
+
+
+                        <div class="admin-product-price">
+
+                            ${formatPrice(
+                                product.price
+                            )}
+
+                            сомонӣ
+
+                        </div>
+
+
+                        <div class="product-actions">
+
+                            <button
+                                class="edit-button"
+                                data-id="${product.id}"
+                            >
+
+                                ✏️
+
+                            </button>
+
+
+                            <button
+                                class="danger-button"
+                                data-id="${product.id}"
+                            >
+
+                                🗑️
+
+                            </button>
+
+                        </div>
+
+                    `;
+
+
+                    container.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+
+            attachProductButtons();
+
+        }
+
+
+
+        // =====================================
+        // PRODUCT BUTTONS
+        // =====================================
+
+        function attachProductButtons() {
+
+
+            document
+                .querySelectorAll(
+                    ".danger-button"
+                )
+                .forEach(
+                    function (button) {
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+
+                                const id =
+                                    this.dataset.id;
+
+
+                                const confirmed =
+                                    confirm(
+                                        "Оё ин маҳсулотро нест мекунед?"
+                                    );
+
+
+                                if (!confirmed) {
+
+                                    return;
+
+                                }
+
+
+                                products =
+                                    products.filter(
+                                        function (
+                                            product
+                                        ) {
+
+                                            return String(
+                                                product.id
+                                            ) !==
+                                            String(id);
+
+                                        }
+                                    );
+
+
+                                localStorage.setItem(
+                                    "orivoProducts",
+                                    JSON.stringify(
+                                        products
+                                    )
+                                );
+
+
+                                renderProducts();
+
+                                updateStats();
+
+                            }
+                        );
+
+                    }
+                );
+
+
+            document
+                .querySelectorAll(
+                    ".edit-button"
+                )
+                .forEach(
+                    function (button) {
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+
+                                const id =
+                                    this.dataset.id;
+
+
+                                const product =
+                                    products.find(
+                                        function (
+                                            item
+                                        ) {
+
+                                            return String(
+                                                item.id
+                                            ) ===
+                                            String(id);
+
+                                        }
+                                    );
+
+
+                                if (!product) {
+
+                                    return;
+
+                                }
+
+
+                                document.getElementById(
+                                    "productName"
+                                ).value =
+                                    product.name;
+
+
+                                document.getElementById(
+                                    "productPrice"
+                                ).value =
+                                    product.price;
+
+
+                                document.getElementById(
+                                    "productCategory"
+                                ).value =
+                                    product.category;
+
+
+                                document.getElementById(
+                                    "productImage"
+                                ).value =
+                                    product.image || "";
+
+
+                                openSection(
+                                    "add-product"
+                                );
+
+
+                                document
+                                    .getElementById(
+                                        "productForm"
+                                    )
+                                    .dataset.editId =
+                                    product.id;
+
+                            }
+                        );
+
+                    }
+                );
+
+        }
+
+
+
+        // =====================================
+        // ADD / EDIT PRODUCT
+        // =====================================
+
+        const productForm =
+            document.getElementById(
+                "productForm"
+            );
+
+
+        productForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    document.getElementById(
+                        "productName"
+                    ).value.trim();
+
+
+                const price =
+                    Number(
+                        document.getElementById(
+                            "productPrice"
+                        ).value
+                    );
+
+
+                const category =
+                    document.getElementById(
+                        "productCategory"
+                    ).value;
+
+
+                const image =
+                    document.getElementById(
+                        "productImage"
+                    ).value.trim();
+
+                const fileInput =
+                    document.getElementById("productImageFile");
+
+                const editId =
+                    this.dataset.editId;
+
+
+                if (editId) {
+
+
+                    products =
+                        products.map(
+                            function (
+                                product
+                            ) {
+
+                                if (
+                                    String(
+                                        product.id
+                                    ) ===
+                                    String(editId)
+                                ) {
+
+                                    return {
+
+                                        ...product,
+
+                                        name:
+                                            name,
+
+                                        price:
+                                            price,
+
+                                        category:
+                                            category,
+
+                                        image:
+                                            image
+
+                                    };
+
+                                }
+
+
+                                return product;
+
+                            }
+                        );
+
+
+                    delete this.dataset.editId;
+
+
+                    alert(
+                        "✅ Маҳсулот нав карда шуд!"
+                    );
+
+                } else {
+
+
+                    const newProduct = {
+
+                        id:
+                            "product-" +
+                            Date.now(),
+
+                        name:
+                            name,
+
+                        price:
+                            price,
+
+                        category:
+                            category,
+
+                        image:
+                            image
+
+                    };
+
+
+                    products.push(
+                        newProduct
+                    );
+
+
+                    alert(
+                        "✅ Маҳсулот илова шуд!"
+                    );
+
+                }
+
+
+                localStorage.setItem(
+                    "orivoProducts",
+                    JSON.stringify(
+                        products
+                    )
+                );
+
+                var extras = products.filter(function (item) {
+                    return item && String(item.id || "").indexOf("product-") === 0;
+                });
+                if (window.OrivoStore) {
+                    window.OrivoStore.setExtraProducts(extras);
+                } else {
+                    localStorage.setItem("orivoAdminProducts", JSON.stringify(extras));
+                }
+
+                if (fileInput && fileInput.files && fileInput.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var last = products[products.length - 1];
+                        if (last) {
+                            last.image = reader.result;
+                        }
+                        localStorage.setItem("orivoProducts", JSON.stringify(products));
+                        var extraAgain = products.filter(function (item) {
+                            return item && String(item.id || "").indexOf("product-") === 0;
+                        });
+                        if (window.OrivoStore) {
+                            window.OrivoStore.setExtraProducts(extraAgain);
+                        }
+                        renderProducts();
+                    };
+                    reader.readAsDataURL(fileInput.files[0]);
+                }
+
+
+                productForm.reset();
+
+
+                renderProducts();
+
+                updateStats();
+
+                openSection(
+                    "products"
+                );
+
+            }
+        );
+
+
+
+        // =====================================
+        // ORDERS
+        // =====================================
+
+        function renderOrders() {
+
+
+            const container =
+                document.getElementById(
+                    "adminOrders"
+                );
+
+
+            if (
+                orders.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="6"
+                            style="text-align:center;padding:40px;"
+                        >
+
+                            🧾 Фармоиш нест
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+                return;
+
+            }
+
+
+            container.innerHTML = "";
+
+
+            orders.forEach(
+                function (order) {
+
+
+                    const customer =
+                        order.customer || {};
+
+
+                    const row =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    row.innerHTML = `
+
+                        <td>
+
+                            ${order.id || "—"}
+
+                        </td>
+
+
+                        <td>
+
+                            ${customer.name || "—"}
+
+                        </td>
+
+
+                        <td>
+
+                            ${customer.phone || "—"}
+
+                        </td>
+
+
+                        <td>
+
+                            ${formatPrice(
+                                order.total
+                            )}
+
+                            с.
+
+                        </td>
+
+
+                        <td>
+
+                            ${
+                                order.date
+                                    ? new Date(
+                                        order.date
+                                    ).toLocaleDateString(
+                                        "tg-TJ"
+                                    )
+                                    : "—"
+                            }
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="status">
+
+                                🟢 Қабул шуд
+
+                            </span>
+
+                        </td>
+
+                    `;
+
+
+                    container.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        // =====================================
+        // RECENT ORDERS
+        // =====================================
+
+        function renderRecentOrders() {
+
+
+            const container =
+                document.getElementById(
+                    "recentOrders"
+                );
+
+
+            const recent =
+                orders.slice(
+                    0,
+                    5
+                );
+
+
+            if (
+                recent.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <div class="admin-empty">
+
+                        <div class="admin-empty-icon">
+                            🧾
+                        </div>
+
+                        Ҳоло фармоиш нест.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            let html = `
+
+                <table class="orders-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                ID
+                            </th>
+
+                            <th>
+                                Харидор
+                            </th>
+
+                            <th>
+                                Маблағ
+                            </th>
+
+                            <th>
+                                Статус
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+            `;
+
+
+            recent.forEach(
+                function (order) {
+
+
+                    const customer =
+                        order.customer || {};
+
+
+                    html += `
+
+                        <tr>
+
+                            <td>
+                                ${order.id || "—"}
+                            </td>
+
+                            <td>
+                                ${customer.name || "—"}
+                            </td>
+
+                            <td>
+                                ${formatPrice(
+                                    order.total
+                                )}
+                                с.
+                            </td>
+
+                            <td>
+
+                                <span class="status">
+                                    🟢 Қабул шуд
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }
+            );
+
+
+            html += `
+
+                    </tbody>
+
+                </table>
+
+            `;
+
+
+            container.innerHTML =
+                html;
+
+        }
+
+
+
+        // =====================================
+        // USERS
+        // =====================================
+
+        function renderUsers() {
+
+
+            const container =
+                document.getElementById(
+                    "adminUsers"
+                );
+
+
+            if (
+                users.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <div class="admin-empty">
+
+                        <div class="admin-empty-icon">
+                            👥
+                        </div>
+
+                        <h3>
+                            Корбар нест
+                        </h3>
+
+                        <p>
+                            Ҳоло корбарони сабтиномшуда нестанд.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            let html = `
+
+                <div class="table-wrapper">
+
+                    <table class="orders-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Ном
+                                </th>
+
+                                <th>
+                                    Email
+                                </th>
+
+                                <th>
+                                    Телефон
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+            `;
+
+
+            users.forEach(
+                function (user) {
+
+                    html += `
+
+                        <tr>
+
+                            <td>
+                                ${user.name || "—"}
+                            </td>
+
+                            <td>
+                                ${user.email || "—"}
+                            </td>
+
+                            <td>
+                                ${user.phone || "—"}
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }
+            );
+
+
+            html += `
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            `;
+
+
+            container.innerHTML =
+                html;
+
+        }
+
+
+
+        // =====================================
+        // LOGOUT
+        // =====================================
+
+        const logoutButton =
+            document.getElementById(
+                "logoutButton"
+            );
+
+
+        logoutButton.addEventListener(
+            "click",
+            function () {
+
+
+                const confirmed =
+                    confirm(
+                        "Оё мехоҳед аз Admin Panel бароед?"
+                    );
+
+
+                if (!confirmed) {
+
+                    return;
+
+                }
+
+
+                localStorage.removeItem(
+                    "orivoAdmin"
+                );
+
+
+                window.location.href =
+                    "login.html";
+
+            }
+        );
+
+
+
+        // =====================================
+        // START
+        // =====================================
+
+        updateStats();
+
+        renderProducts();
+
+        renderOrders();
+
+        renderRecentOrders();
+
+        renderUsers();
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

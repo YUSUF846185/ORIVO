@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="tg">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ORIVO | Оформление заказа</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="authGuard.js"></script>
+    <script src="orivoStore.js"></script>
+
+    <style>
+
+        /* =========================================
+           CHECKOUT
+        ========================================= */
+
+        .checkout-page {
+            width: 92%;
+            max-width: 1200px;
+            margin: 40px auto 80px;
+        }
+
+        .checkout-hero {
+            background:
+                linear-gradient(
+                    135deg,
+                    #063d2c,
+                    #08764d
+                );
+
+            color: white;
+            border-radius: 28px;
+            padding: 45px 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow:
+                0 15px 40px rgba(0,0,0,.10);
+        }
+
+        .checkout-hero-icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .checkout-hero h1 {
+            font-size: 42px;
+            margin: 0 0 10px;
+        }
+
+        .checkout-hero p {
+            margin: 0;
+            opacity: .85;
+        }
+
+
+        /* =========================================
+           LAYOUT
+        ========================================= */
+
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1.4fr .8fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .checkout-box {
+            background: white;
+            border: 1px solid #e3ebe7;
+            border-radius: 22px;
+            padding: 25px;
+            color: #15201c;
+            box-shadow:
+                0 10px 35px rgba(0,0,0,.05);
+        }
+
+        .checkout-box h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #10211b;
+            font-weight: 900;
+        }
+
+
+        /* =========================================
+           PRODUCTS
+        ========================================= */
+
+        #checkoutItems {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .checkout-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px;
+            border: 1px solid #e5ece8;
+            border-radius: 16px;
+            background: #fafcfb;
+        }
+
+        .checkout-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            background: white;
+            border-radius: 12px;
+            padding: 7px;
+            flex-shrink: 0;
+        }
+
+        .checkout-item-info {
+            flex: 1;
+        }
+
+        .checkout-item-info h3 {
+            margin: 0 0 7px;
+            font-size: 16px;
+            color: #15201c;
+        }
+
+        .checkout-item-info p {
+            margin: 0;
+            color: #08764d;
+            font-weight: 800;
+        }
+
+
+        /* =========================================
+           QUANTITY
+        ========================================= */
+
+        .checkout-quantity {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkout-quantity button {
+            width: 34px;
+            height: 34px;
+            border: 1px solid #d9e4df;
+            border-radius: 9px;
+            background: white;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .checkout-quantity button:hover {
+            background: #eaf7f1;
+            border-color: #08764d;
+        }
+
+        .checkout-quantity strong {
+            min-width: 25px;
+            text-align: center;
+            color: #15201c;
+        }
+
+        .checkout-item-total {
+            min-width: 105px;
+            text-align: right;
+            color: #08764d;
+        }
+
+        .remove-checkout-item {
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 9px;
+            background: #fff0f2;
+            cursor: pointer;
+        }
+
+        .remove-checkout-item:hover {
+            background: #ffdce1;
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .checkout-form {
+            display: grid;
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 800;
+            color: #15201c;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px 14px;
+            border: 1px solid #dce6e1;
+            border-radius: 11px;
+            background: #f8faf9;
+            color: #15201c;
+            outline: none;
+            font-size: 14px;
+            transition: .25s;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #5d6b66;
+            opacity: 1;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #08764d;
+            background: white;
+            box-shadow:
+                0 0 0 4px rgba(8,118,77,.08);
+        }
+
+
+        /* =========================================
+           PAYMENT
+        ========================================= */
+
+        .payment-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px;
+            border: 1px solid #dce6e1;
+            border-radius: 12px;
+            background: #fafcfb;
+            color: #15201c;
+            cursor: pointer;
+        }
+
+        .payment-option:hover {
+            border-color: #08764d;
+            background: #eff9f4;
+        }
+
+        .payment-option input {
+            accent-color: #08764d;
+        }
+
+
+        /* =========================================
+           SUMMARY
+        ========================================= */
+
+        .summary-box {
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 13px 0;
+            border-bottom: 1px solid #edf1ef;
+        }
+
+        .summary-row span:first-child {
+            color: #2f3d38;
+            font-weight: 700;
+        }
+
+        .summary-row strong {
+            color: #15201c;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 17px;
+            border-top: 2px solid #e1e9e5;
+        }
+
+        .summary-total span {
+            font-size: 18px;
+            font-weight: 800;
+            color: #10211b;
+        }
+
+        .summary-total strong {
+            font-size: 25px;
+            color: #08764d;
+        }
+
+
+        /* =========================================
+           ORDER BUTTON
+        ========================================= */
+
+        #placeOrderButton {
+            width: 100%;
+            min-height: 54px;
+            margin-top: 22px;
+            border: none;
+            border-radius: 13px;
+            background: #08764d;
+            color: white;
+            font-size: 16px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        #placeOrderButton:hover {
+            background: #E85D00;
+            transform: translateY(-2px);
+            box-shadow:
+                0 10px 25px rgba(8,118,77,.22);
+        }
+
+        #placeOrderButton:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+
+        /* =========================================
+           EMPTY
+        ========================================= */
+
+        .checkout-empty {
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .checkout-empty-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .checkout-empty h2 {
+            margin-bottom: 10px;
+        }
+
+        .checkout-empty p {
+            color: #718079;
+            margin-bottom: 20px;
+        }
+
+        .checkout-shop-button {
+            display: inline-flex;
+            padding: 13px 22px;
+            border-radius: 12px;
+            background: #08764d;
+            color: white;
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+
+        /* =========================================
+           SUCCESS
+        ========================================= */
+
+        .order-success {
+            display: none;
+            text-align: center;
+            padding: 65px 25px;
+            background: white;
+            border: 1px solid #e3ebe7;
+            border-radius: 25px;
+            box-shadow:
+                0 10px 35px rgba(0,0,0,.06);
+        }
+
+        .success-icon {
+            font-size: 70px;
+            margin-bottom: 15px;
+        }
+
+        .order-success h2 {
+            color: #08764d;
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .order-success p {
+            color: #718079;
+            line-height: 1.7;
+        }
+
+        .success-home {
+            display: inline-flex;
+            margin-top: 25px;
+            padding: 13px 23px;
+            border-radius: 12px;
+            background: #08764d;
+            color: white;
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 850px) {
+
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-box {
+                position: static;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .checkout-page {
+                width: 94%;
+                margin-top: 25px;
+            }
+
+            .checkout-hero {
+                padding: 35px 20px;
+            }
+
+            .checkout-hero h1 {
+                font-size: 30px;
+            }
+
+            .checkout-box {
+                padding: 18px;
+            }
+
+            .checkout-item {
+                flex-wrap: wrap;
+            }
+
+            .checkout-item-total {
+                width: 100%;
+                text-align: left;
+            }
+
+            .checkout-quantity {
+                margin-left: auto;
+            }
+
+        }
+
+
+        body.dark-mode .checkout-box,
+        body.dark-mode .order-success {
+            color: #15201c;
+        }
+
+        body.dark-mode .checkout-box h2,
+        body.dark-mode .checkout-item-info h3,
+        body.dark-mode .form-group label,
+        body.dark-mode .payment-option,
+        body.dark-mode .summary-row strong,
+        body.dark-mode .summary-total span,
+        body.dark-mode .checkout-quantity strong {
+            color: #10211b;
+        }
+
+        body.dark-mode .summary-row span:first-child,
+        body.dark-mode .form-group input::placeholder,
+        body.dark-mode .form-group textarea::placeholder,
+        body.dark-mode .checkout-empty p,
+        body.dark-mode .order-success p {
+            color: #3a4843;
+        }
+
+        body.dark-mode .form-group input,
+        body.dark-mode .form-group textarea,
+        body.dark-mode .form-group select {
+            color: #15201c;
+            background: #f8faf9;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header>
+
+    <a
+        href="index.html"
+        class="brand"
+    >
+
+        <img
+            src="images/orivo-logo.png"
+            alt="ORIVO"
+            class="brand-logo"
+        >
+
+        <div class="brand-info">
+
+            <div class="brand-name">
+                ORIVO
+            </div>
+
+            <div class="brand-subtitle">
+                TAJIKISTAN MARKETPLACE
+            </div>
+
+        </div>
+
+    </a>
+
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            placeholder="🔍 Ҷустуҷӯ..."
+        >
+
+    </div>
+
+
+    <div class="menu">
+
+        <a
+            href="index.html"
+            class="header-link"
+        >
+            🏠
+        </a>
+
+
+        <a
+            href="wishlist.html"
+            class="header-link"
+        >
+
+            ❤️
+
+            <span id="wishlistCount">
+                0
+            </span>
+
+        </a>
+
+
+        <a
+            href="index.html#cart"
+            class="header-link"
+        >
+
+            🛒
+
+            <span id="cartCount">
+                0
+            </span>
+
+        </a>
+
+
+        <button
+            id="themeButton"
+            class="theme-button"
+            type="button"
+        >
+
+            🌙
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="checkout-page">
+
+    <div class="checkout-steps">
+        <div class="checkout-step active">1. Маълумоти расонидан</div>
+        <div class="checkout-step">2. Пардохт</div>
+        <div class="checkout-step">3. Тасдиқи фармоиш</div>
+    </div>
+
+
+    <!-- HERO -->
+
+    <section class="checkout-hero">
+
+        <div class="checkout-hero-icon">
+            🛒
+        </div>
+
+        <h1>
+            Оформление заказа
+        </h1>
+
+        <p>
+            Маълумоти худро ворид кунед
+            ва фармоишро тасдиқ намоед.
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================
+         SUCCESS MESSAGE
+    ====================================== -->
+
+    <section
+        id="orderSuccess"
+        class="order-success"
+    >
+
+        <div class="success-icon">
+            🎉
+        </div>
+
+        <h2>
+            Фармоиш қабул шуд!
+        </h2>
+
+        <p>
+
+            Ташаккур барои харид аз ORIVO.
+
+            <br>
+
+            Фармоиши шумо бо муваффақият
+            қабул гардид.
+
+        </p>
+
+        <a
+            href="index.html"
+            class="success-home"
+        >
+
+            🏠 Ба Marketplace
+
+        </a>
+
+    </section>
+
+
+
+    <!-- =====================================
+         CHECKOUT CONTENT
+    ====================================== -->
+
+    <div
+        id="checkoutContent"
+        class="checkout-layout"
+    >
+
+
+        <!-- =================================
+             LEFT
+        ================================== -->
+
+        <section class="checkout-box">
+
+            <h2>
+                📦 Маҳсулотҳои шумо
+            </h2>
+
+
+            <div id="checkoutItems">
+
+                <!-- checkout.js маҳсулотҳоро
+                     дар ин ҷо нишон медиҳад -->
+
+            </div>
+
+
+            <br>
+
+
+            <h2>
+                👤 Маълумоти харидор
+            </h2>
+
+
+            <form
+                id="checkoutForm"
+                class="checkout-form"
+            >
+
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="fullName">
+                        Номи пурра
+                    </label>
+
+                    <input
+                        id="fullName"
+                        name="fullName"
+                        type="text"
+                        placeholder="Номи пурраи шумо"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        📞 Рақами телефон
+                    </label>
+
+                    <input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        placeholder="+992 900000000"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- CITY -->
+
+                <div class="form-group">
+
+                    <label for="city">
+                        🏙 Шаҳр
+                    </label>
+
+                    <select
+                        id="city"
+                        name="city"
+                        required
+                    >
+
+                        <option value="">
+                            Шаҳрро интихоб кунед
+                        </option>
+
+                        <option value="Dushanbe">
+                            Душанбе
+                        </option>
+
+                        <option value="Khujand">
+                            Хуҷанд
+                        </option>
+
+                        <option value="Bokhtar">
+                            Бохтар
+                        </option>
+
+                        <option value="Kulob">
+                            Кӯлоб
+                        </option>
+
+                        <option value="Istaravshan">
+                            Истаравшан
+                        </option>
+
+                        <option value="Tursunzoda">
+                            Турсунзода
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- ADDRESS -->
+
+                <div class="form-group">
+
+                    <label for="address">
+                        📍 Суроға
+                    </label>
+
+                    <textarea
+                        id="address"
+                        name="address"
+                        placeholder="Суроғаи пурраи худро нависед..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- COMMENT -->
+
+                <div class="form-group">
+
+                    <label for="comment">
+                        📝 Шарҳ
+                    </label>
+
+                    <textarea
+                        id="comment"
+                        name="comment"
+                        placeholder="Шарҳи иловагӣ..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- PAYMENT -->
+
+                <h2>
+                    💳 Тарзи пардохт
+                </h2>
+
+
+                <div class="payment-options">
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="cash"
+                            checked
+                        >
+
+                        💵 Пардохт ҳангоми гирифтани мол
+
+                    </label>
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="card"
+                        >
+
+                        💳 Корти бонкӣ
+
+                    </label>
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="online"
+                        >
+
+                        🌐 Пардохти онлайн
+
+                    </label>
+
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+
+
+        <!-- =================================
+             RIGHT
+        ================================== -->
+
+        <aside
+            class="checkout-box summary-box"
+        >
+
+            <h2>
+                🧾 Хулосаи фармоиш
+            </h2>
+
+
+            <!-- ITEMS -->
+
+            <div class="summary-row">
+
+                <span>
+                    Маҳсулот
+                </span>
+
+                <strong id="summaryItems">
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- PRODUCTS PRICE -->
+
+            <div class="summary-row">
+
+                <span>
+                    Маблағи маҳсулот
+                </span>
+
+                <strong>
+
+                    <span id="summaryProducts">
+                        0
+                    </span>
+
+                    сомонӣ
+
+                </strong>
+
+            </div>
+
+
+            <!-- DELIVERY -->
+
+            <div class="summary-row">
+
+                <span>
+                    Расонидан
+                </span>
+
+                <strong id="deliveryPrice">
+                    0 сомонӣ
+                </strong>
+
+            </div>
+
+
+            <!-- TOTAL -->
+
+            <div class="summary-total">
+
+                <span>
+                    Ҳамагӣ
+                </span>
+
+                <strong>
+
+                    <span id="checkoutTotal">
+                        0
+                    </span>
+
+                    сомонӣ
+
+                </strong>
+
+            </div>
+
+
+            <!-- ORDER BUTTON -->
+
+            <button
+                id="placeOrderButton"
+                type="button"
+            >
+
+                ✅ Фармоиш додан
+
+            </button>
+
+        </aside>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <div class="footer-brand">
+
+        <img
+            src="images/orivo-logo.png"
+            alt="ORIVO"
+        >
+
+        <div>
+
+            <h3>
+                ORIVO
+            </h3>
+
+            <p>
+                TAJIKISTAN MARKETPLACE
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <p>
+        © 2026 ORIVO Marketplace
+    </p>
+
+</footer>
+
+<nav class="bottom-nav" aria-label="Навигация">
+    <a href="index.html">Хона</a>
+    <a href="index.html#categories">Категория</a>
+    <a class="active" href="index.html#cart">Сабад</a>
+    <a href="login.html">Ҳисоб</a>
+</nav>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script src="i18n.js"></script>
+<script src="checkout.js"></script>
+
+
+</body>
+
+</html>
